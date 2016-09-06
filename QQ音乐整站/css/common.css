@@ -1,0 +1,298 @@
+ body {															/*清除默认样式*/
+ 	margin: 0;
+ 	font: 12px Arial,Tahoma,"hiragino sans gb",Helvetica;
+ 	background: #FFFFFF;
+ }
+a {
+	text-decoration: none;
+}
+a:hover {
+	/*text-decoration: underline;*/
+}
+img {
+	border: none;
+	vertical-align: top;
+}
+ul,
+ol,
+dl {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+dd {
+	margin: 0;
+}
+input {
+	padding: 0;
+	/*margin: 0;*/
+}
+.clearFix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.clearFix {
+	zoom: 1;
+}														/*结束*/
+
+.wrap {											/*公用样式设置*/	
+	width: 960px;
+	margin: 0 auto;
+}	
+.nav .select,									/*背景统一设置*/
+.nav li:hover,
+.search input,
+.search input:focus,
+.recRight .recList  {
+	background: url(../img/icon_no_repeat.png) no-repeat; 
+} 
+.fi_title h2,
+.liTitle h2,
+.hotSinger h2,
+ .liTitle>span a {
+	background: url(../img/index_title_bg.png) no-repeat;
+}
+.fi_iconnav span,
+.data strong,
+.rec_icon span,
+.recIcon a,
+.login span,
+.login a
+  {
+	background: url(../img/icon-sprite.png) no-repeat;
+}													
+.fi_play {
+	background: url(../img/icon_play.png) no-repeat;
+}																/*公用样式结束？*/
+#header {			
+	height: 30px;
+	background-color: #000000;
+}								
+#header .topnav {
+	float: right;
+	margin-right: -10px;
+}			
+.topnav li {
+	float: left;
+	height: 30px;
+	font: bold 12px/30px Arial,'Times New Roman','Microsoft YaHei',SimHei;
+	cursor: pointer;
+}
+.topnav li p {
+	float: left;
+	color: #8b8b8b;
+}
+.topnav  p em {
+	float: left;
+	font-style: normal;
+}
+.topnav li span {
+	float: left;
+	margin: 0 7px;
+	font-weight: normal;
+	color: #3d3d3d;
+}
+.topnav li a {
+	float: left;
+	margin: 0 1px 0 2px;
+	color: #acacac;
+}
+.topnav img {
+	margin-top: 3px;
+	width: 24px;
+	height: 24px;
+}
+.topnav a:hover {
+	color: #1fad43;
+	text-decoration: none;
+}
+#l-n-s {												/*l-n-s nav*/
+	height: 113px;
+	border-bottom: 1px solid #dddddd;
+}			
+#l-n-s	.wrap {
+	position: relative;
+}
+.logo {
+	float: left;
+	/*height: 113px;*/
+}
+.logo a {
+	float: left;
+	margin-left: -2px;
+	height: 113px;
+	width: 240px;
+}
+.nav {
+	float: left;
+	height: 75px;
+}			
+.nav li {
+	position: relative;
+	float: left;
+	margin-right: 8px;
+	font:  bold 16px/38px  arial,"宋体";
+}		
+.nav .music {
+	width: 88px;
+}
+.nav .select>a {
+	color: #FFFFFF;
+}
+.nav .MV {
+	width: 58px;
+}
+.nav .my_s {
+	width: 89px;
+}
+.nav .my_s:hover {
+	background-position: -166px -79px;
+}
+.nav .down {
+	width: 106px;
+}	
+.nav .down:hover {
+	background-position: -267px -79px;
+}
+.nav li>a {
+	float: left;
+	padding-top: 37px ;
+	width: 100%;
+	text-align: center;
+	color: #515151;
+}					
+.search {
+	position: absolute;
+	right: -4px;
+	top: 38px;
+}
+.search input {
+	/*float: left;*/
+	/*padding: 5px 0 5px 5px;*/
+	text-indent: 15px;                 /*input 为什么不能用padding控制位置？*/
+	width: 228px;
+	height: 39px;
+	font-size: 12px;
+	color: #515151;
+	border: none;
+	outline: none;
+	background-position: 0 -160px;
+}
+.search a {
+	position: absolute;
+	right:5px;
+	top: 5px;
+	width: 23px;
+	height: 29px;
+}
+.search input:focus {
+	background-position: -233px -160px;
+}
+.nav li div {
+	position: absolute;
+	top: 75px;
+	width: 800px;						/*如果不设置宽度,默认是父级宽度,不够*/
+	font-size: 0;
+	text-align: left;
+	line-height: 38px;
+}
+.nav .select div {
+	left: 17px;
+}
+.nav div a {
+	font-size: 14px;
+	font-weight: normal;
+	color: #6e6e6e;
+}
+.nav div a:first-child {
+	color: #0dad51;
+	font-weight: bold;
+}
+.nav div span {
+	margin: 0 13px 0 14px;
+	font-size: 12px;
+	color: #cfc5cf;
+}
+.nav div a:hover {
+	color: #444444;
+}
+.nav div a:first-child:hover {
+	color: #05b600;
+}																/*头部结束*/
+
+.mvList p,														/*超出显示省略号*/
+.mvList span,
+.fi_list strong,
+.ellipsis {
+	max-width: 100%;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}																/*……结束*/
+#footer {														/*	footer*/
+	padding-top: 29px;
+	background: #f7f7f7;
+	color: #8b8b8b;
+	font-family: tahoma;
+}										
+#footer a {
+	color: #515151;
+}
+.ftTop dl {
+	float: left;
+	margin-left: 50px;
+}
+.download {
+	margin-right: 30px;
+	width: 275px;
+}
+.product {
+	width: 128px;
+}
+.link {
+	float: right;
+	width: 377px;
+}
+.ftTop dt {
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 32px;
+	color: #757575;
+}
+.ftTop dd
+ {
+	float: left;
+	margin-right: 20px;
+	line-height: 26px;
+}
+.product dd{
+	float: none;
+}
+.link .qqSocial {
+	margin-right: 13px;
+}
+.download .ipad {
+	margin-right: 25px;
+}
+.ftNav {
+	margin-top: 51px;
+	line-height: 24px;
+	text-align: center;
+}
+.ftNav p:first-child a {
+	font-size: 12px;
+}
+.ftNav p:first-child {
+	text-align: center;
+	font-size: 0;
+}
+.ftNav p:first-child span {
+	font-size: 12px;
+	margin: 0 2px 0 1px;
+}											
