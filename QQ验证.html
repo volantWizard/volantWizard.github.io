@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text" name="txt" id="txt" value="" />
+		<span id="tips"></span>
+		<script type="text/javascript">
+			var tips = document.getElementById('tips');
+			var txt = document.getElementById('txt');
+			
+			var re = /^[1-9]\d{4,11}$/g;
+			txt.oninput = function (){
+			   var value = this.value;
+			   re.lastIndex = 0;
+			   if(re.test(value)){
+			   		tips.innerHTML = '是QQ'
+			   }else{
+			   		tips.innerHTML = 'BU是QQ'
+			   }
+			}
+			 
+		</script>
+	</body>
+</html>
