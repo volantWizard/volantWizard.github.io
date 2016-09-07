@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			function UserName(userName,sex,age){
+			    var obj = {};
+			    obj.userName=userName;
+			    obj.sex=sex;
+			    obj.age=age;
+			    return obj;
+			}
+			var user1 = UserName('asdf','男',22);
+			var user2 = UserName('sdf','男',25);
+			console.log(user1);
+			console.log(user2);
+			function fn1(){
+		        console.log('我技术不错');
+		    }
+			function fn(userName){
+			    this.userName = userName;
+			    this.say = fn1;
+//			    return [];
+				
+			}
+			var user3 = new fn(' da');
+			var user4 = new fn('刚刚');
+			console.dir(user3);//new 调用,必须返回一个对象，隐式为this对象，显示（除非return后面是一个对象）返回对象
+			console.log(fn());//自调用，隐私返回undefined，显示返回return 后面的东西
+			
+			console.dir(fn.prototype);  //指向一个对象obj
+			fn.jj = 'aa'; //这样的方法，只能自己用
+			fn.dd = function (){//这样的方法，只能自己用
+			    
+			}
+			fn.prototype.ba = 'cc'; //这样的方法，可以通过原型链访问使用
+			fn.prototype.bb = function (){//这样的方法，可以通过原型链访问使用
+			    console.log('自定义的属性');
+			}
+			console.dir(fn.prototype); 
+			console.log(user3.dd,user3.jj);//挂在函数fn本身的对象，无法访问
+			console.log(user3.bb===user3.__proto__.bb);//通过原型链寻找
+			console.log(user3.bb===user4.bb);
+			
+		</script>
+	</body>
+</html>

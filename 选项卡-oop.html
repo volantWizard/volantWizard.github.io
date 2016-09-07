@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			p {display: none;}
+		</style>
+		
+	</head>
+	
+	<body>
+		<div id="div1">
+			<input type="button" value="按钮一" style="background: yellow;" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p style="display: block;">内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+		
+		<div id="div2">
+			<input type="button" value="按钮一" style="background: yellow;" />
+			<input type="button" value="按钮二" />
+			<input type="button" value="按钮三" />
+			<p style="display: block;">内容一</p>
+			<p>内容二</p>
+			<p>内容三</p>
+		</div>
+		<input type="button" value="第一个自动播放"  id="btn1"/>
+		<input type="button" value="第二个停止自动播放" id="btn2"/>
+		<input type="button" value="两个播放翻转" id="btn3"/>
+		<script>
+
+			/*
+				在函数中使用var声明的变量，是局部变量
+			*/
+			//构造函数
+			function Tab(parent){
+			    this.allInput = parent.getElementsByTagName('input');
+			    this.allp = parent.getElementsByTagName('p');
+				
+			}
+			
+			//相同功能的方法放在原型身上
+			//初始化函数,实现点击切换功能
+			Tab.prototype.init = function (){
+				this.timer = null;
+				var _this = this;
+				for (var i = 0; i < _this.allInput.length; i++) {
+					_this.allInput[i].index = i ;
+					_this.allInput[i].onclick = function (){
+						for (var i = 0; i < _this.allp.length; i++) {
+							_this.allInput[i].style.background = '';
+							_this.allp[i].style.display = 'none';
+						}
+						this.style.background = 'yellow';
+						_this.allp[this.index].style.display = 'block';
+						_this.n = this.index; //同时把n同步
+					}
+					
+				}
+			}
+			var div1 = document.getElementById('div1'),
+				div2 = document.getElementById('div2');
+			//获得包含div1的tab1实例
+			var tab1 = new Tab(div1);
+			tab1.init();
+			var tab2 = new Tab(div2);
+			tab2.init();
+			
+			//自动播放
+			Tab.prototype.autoPlay = function (){
+				if(this.timer)return;
+			    this.n = 0 ; //播放时添加记录状态，打开
+			    var pre = 0;
+			    var _this = this ;
+			    console.log(1);
+			    this.timer = setInterval(function (){
+			        _this.n++;
+			        if(_this.n>_this.allInput.length-1){
+			        	_this.n = 0 ;
+			        }
+			         console.log(2);
+			        _this.allInput[pre].style.background = '';
+			        _this.allp[pre].style.display = 'none';
+			        _this.allInput[_this.n].style.background = 'yellow';
+			        _this.allp[_this.n].style.display = 'block';
+			        pre = _this.n ;
+			    },1000)
+			}
+			
+			
+			//停止播放
+			Tab.prototype.stopPlay = function (){
+			    clearInterval(this.timer);
+			    this.timer = null;//播放状态根据timer而定
+			} 
+			
+			
+//			tab2.autoPlay();
+			
+			//反转播放,this绑定
+			Tab.prototype.palyStatus = function (){
+			    if (!!this.timer) {
+			    	//播放关闭
+			    	this.stopPlay();
+			    }else{
+			    	//播放打开
+			    	this.autoPlay();
+			    }
+			}
+			
+			var btn1 = document.getElementById('btn1'),
+				btn2 = document.getElementById('btn2'),
+				btn3 = document.getElementById('btn3')
+			btn1.onclick = function (){
+			    tab1.autoPlay();
+			}	
+			btn2.onclick = function (){
+			    tab2.stopPlay();
+			}
+			btn3.onclick = function (){
+			    tab1.palyStatus();
+			    tab2.palyStatus();
+			}
+		</script>
+	</body>
+</html>
