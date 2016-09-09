@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var obj1 = {
+				a:1,
+				b:{
+					aa:2,
+					c:[1,2,3,'c'],
+					d:{
+						bb:{
+							e:123,
+							f:[1,2,3,4]
+						}
+					}
+				},
+				c:['s']
+			} 
+			//获得对象类型
+		    function classs(a){
+		        return Object.prototype.toString.call(a);
+		    }
+			//执行深层复制、浅层复制
+			function clone(obj1){
+			    //判断obj1 是什么类型，就创建什么对象
+			   	var obj = classs(obj1) === '[object Object]'? {}:[];
+			    //执行复制功能
+			    for (var attr in obj1) {
+			    	if(classs(obj1[attr]) !== '[object Object]'&& classs(obj1[attr]) !== '[object Array]'){
+			    		//不是对象直接复制
+			    		obj[attr] = obj1[attr]
+			    	}else { //是对象的话，继续判断
+		    			//obj.b = {}; 把克隆的东西要付给父对象的对应的attr属性
+		    			obj[attr] = clone(obj1[attr]);
+			    	}
+			    }
+			    return obj;
+			}
+			var obj123 =  clone(obj1);
+			obj1.b.d.bb.f[0] = 10;
+			console.log(obj1);
+			console.log(obj123);
+		</script>
+	</body>
+</html>
