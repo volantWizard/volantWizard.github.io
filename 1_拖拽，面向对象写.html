@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			.box{
+				width: 200px;
+				height: 200px;
+				background: red;
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			#box2{
+				top:300px;
+				background: blue;
+			}
+		</style>
+		<script>
+			//定义构造函数
+			function Drag(element){
+				//隐藏的对象 obj
+				this.element = element;
+				this.init();
+				this.disX = 0;
+				this.disY = 0;
+			}
+			//初始化，函数
+			Drag.prototype.init = function (){
+				// 定义变量指向OBJ
+				var _this = this;
+				this.element.onmousedown = function (ev){
+					//把事件对象传进去
+					_this.downFn(ev);	
+					ev.preventDefault();
+				}	
+			};
+
+			Drag.prototype.downFn = function (ev){
+				// this -> element定义变量指向element
+				this.disX = ev.clientX - this.element.offsetLeft;
+				this.disY = ev.clientY - this.element.offsetTop;
+				var _this = this;
+				document.onmousemove = function (ev){
+					_this.moveFn(ev);
+				};
+				document.onmouseup = this.upFn
+			};
+			//移动函数单独写
+			Drag.prototype.moveFn = function (ev){
+				this.element.style.left = ev.clientX - this.disX + 'px';	
+				this.element.style.top = ev.clientY - this.disY + 'px';	
+			};
+			////移动函数单独写
+			Drag.prototype.upFn = function (){
+				document.onmousemove = document.onmouseup = null;	
+			};
+
+			//可以限制范围 拥有拖拽的功能
+			function DragRange(element){
+				Drag.call(this,element);
+			}
+			//继承Drag的属性
+			for( var attr in Drag.prototype ){
+				if( Drag.prototype.hasOwnProperty(attr) ){ //排除外部的属性
+					DragRange.prototype[attr] = Drag.prototype[attr];
+				}
+			}
+
+			DragRange.prototype.moveFn = function (ev){
+				var l = ev.clientX - this.disX;
+				var t = ev.clientY - this.disY;
+				//判断边界
+				if( l < 0 ) {
+					l = 0;
+				}
+				if( t < 0 ) {
+					t = 0;
+				}
+				if( l > document.documentElement.clientWidth - this.element.offsetWidth ) {
+					l = document.documentElement.clientWidth - this.element.offsetWidth
+				}
+				if( t > document.documentElement.clientHeight - this.element.offsetHeight ) {
+					t = document.documentElement.clientHeight - this.element.offsetHeight
+				}
+				//定位赋值
+				this.element.style.left = l + 'px';	
+				this.element.style.top = t + 'px';	
+			};
+
+			window.onload = function(){
+				var box = document.getElementById("box");
+				var box2 = document.getElementById("box2");
+
+				new Drag(box);
+				new DragRange(box2);
+			};
+		</script>
+	</head>
+
+	<body>
+		<div id="box" class="box"></div>
+		<div id="box2" class="box"></div>
+	</body>
+</html>

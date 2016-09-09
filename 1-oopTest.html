@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		//hasOwnProperty()
+		function Test(){
+			    this.abc = 'haha';
+			}
+			var test1 = new Test();
+			/*Test.prototype.cc = 'duyu'; 
+			console.log(test1.abcc);
+			console.log(test1.hasOwnProperty('abc'));
+			console.log(test1.hasOwnProperty('cc')); //不查找圆形链
+			
+		//for in 顺着原型链，一直找
+			Object.prototype.aa = 'we';
+			Test.prototype.dd = 'AA';
+			for (var attr in test1) {
+				console.log(attr);
+			}
+			for (var attr in test1) {
+				if (test1.hasOwnProperty(attr)) {
+					console.log(attr);
+				}
+			}
+		//constructor 
+			console.log(Test.prototype)
+			console.log(Test.prototype.constructor === Test); //值是构造这个对象的函数
+			console.log(test1.constructor);
+			console.log([].constructor);
+			console.log({}.constructor);
+			
+		//instanceof 检测一个函数的原型是否在检测对象的原型链上 	
+		
+		console.log([] instanceof Object);		//运算符只能这样写
+		console.log({} instanceof Object)
+		
+		console.log(test1 instanceof Test);
+		console.log(test1 instanceof Array);*/
+		
+		// //包装时，根据变量的值来进行选取对应的构造函数
+		var arr = [1,2,3,'e'];
+		var obj = {c:2,d:0};
+		arr.push('asd');
+		console.log(arr);
+//		alert(arr)
+//		alert(obj)
+//		alert(undefined)
+		console.log(Object.prototype);
+		console.log(Array.prototype);
+		console.log(arr.toString(),obj.toString());
+		console.log( Object.prototype.toString.call(arr) );
+		console.log( Object.prototype.toString.call("abc") );//[object String];
+		console.log( Object.prototype.toString.call(test1) );
+		console.log( Object.prototype.toString.call(123) );
+		console.log(Array.prototype.toString.call("abc"));//只针对数组才起作用
+		console.log(Array.prototype.toString.call(arr));
+		
+		//继承方法
+		
+		</script>
+	</body>
+</html>
