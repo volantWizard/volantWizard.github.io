@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#message {
+				width: 250px;
+				height: 400px;
+				border: 1px dashed #000000;
+				/*background: greenyellow;*/
+				/*opacity: .4;*/
+			}
+			#message a {
+				text-decoration: none;
+				color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="message">
+			<input type="text" name="txt" id="txt" value="" placeholder="请输入内容"/>
+			<input type="button" name="btn" id="btn" value="发表" />
+			<ul>
+				<!--<li>
+					<span>1qeddqwe</span>
+					<a href="javascript:;">删除</a>
+					<input type="checkbox" name="checkbox" id="checkbox" value="" />
+				</li>-->
+			</ul>
+			<script src="jquery-2.2.4.js" type="text/javascript" charset="utf-8"></script>
+			<script type="text/javascript">
+			console.log($);
+				$(function (){
+				    var inputs = $('input');
+				    
+				    inputs.eq(1).click(function (){
+				        var val = inputs.eq(0).val();
+				        //生成li 
+				        var li = $('<li><span>'+val+'</span><a href="javascript:;">删除</a><input type="checkbox" name="checkbox" id="checkbox" value="" /></li>')
+					   	/*插入到后面
+					   	$('ul:first').append(li);*/
+						/*//插入到前面
+						$('ul:first').prepend(li);*/
+						/*替换，直接清空，然后，append
+						$('ul:first').empty().append(li);*/
+//						$('ul:first').html('').append(li);
+
+						var childs = $('ul:first').children();
+						if (childs.length) {
+							$('ul:first').children().replaceWith(li) 
+						} else{
+							$('ul:first').append(li)
+						}
+						
+				    });
+				    
+				    //事件委托删除
+				    $('ul:first').on('click','a',function (){
+				    	//找到a的腹肌
+				    	var par = $(this).parent();
+				    	console.log(par);
+				    	//找到同级的input 
+				    	var input = par.find('input');
+				    	
+				    	//判断是否删除
+				    	if (input.is(':checked')) {
+				    		par.remove();
+				    	}
+				    })
+				})
+			</script>
+		</div>
+		
+	</body>
+</html>

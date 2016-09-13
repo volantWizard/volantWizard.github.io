@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			.box {
+				position: absolute;
+				left: 100px;
+				top: 100px;
+				width: 200px;
+				height: 200px;
+				background: red;
+			}
+		</style>
+		<script src="jquery-2.2.4.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div class="box"></div>
+		<script type="text/javascript">
+			$(function (){
+				var box = $('.box');
+			    $('.box').on('mousedown',function (ev){
+			        var boxL = box.offset().left ,
+			        	boxT = box.offset().top;
+			        var disX = ev.clientX - boxL,
+			        	disY = ev.clientY - boxT;
+			        
+			        $(document).on({
+			        	mousemove:function(ev){
+			        		var l = ev.clientX - disX;
+			        		var t = ev.clientY - disY;
+			        		var vieW =	$(window).width() - box.width();
+			        		var vieH = $(window).height() - box.height();
+			        		if(l<0) l = 0;
+			        		if(t <0 ) t = 0;
+			        		if(l > vieW) {
+			        			l = vieW;
+			        		}
+			        		if(t > vieH){
+			        			t = vieH
+			        		}
+			        		box.css({
+			        			left:l ,
+			        			top:t 
+			        		})
+			        	},
+			        	mouseup:function (ev){
+			        	    $(document).off('mousemove mouseup');
+			        	}
+			        	
+
+			        })
+			    })
+			})
+			
+		</script>
+	</body>
+</html>

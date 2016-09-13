@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			ul {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			h2 {
+				margin: 0;
+			}
+			.qqList {
+				width: 250px;
+				height: 400px;
+				border: 2px solid #000000;
+			}
+			.qqList h2 {
+				background: deepskyblue;
+			}
+			
+			.list {
+				height: 0;
+				overflow: hidden;
+			}
+			.list li {
+				height: 25px;
+				border-bottom: 1px solid #0000FF;
+				background: #87CEEB;
+			}
+			.qqList .bg {
+				background: greenyellow;
+			}
+			.hide {
+				display: none;
+			}
+			.show {
+				display: block;
+			}
+		</style>
+		<script src="jquery-2.2.4.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<ul class="qqList">
+			<li>
+				<h2>我的好友</h2>
+				<ul class="list">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+				</ul>
+			</li>
+			<li>
+				<h2>黑名单</h2>
+				<ul class="list">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+				</ul>
+			</li>
+			<li>
+				<h2>高中同学</h2>
+				<ul class="list">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+				</ul>
+			</li>
+		</ul>
+		<script type="text/javascript">
+			$(function (){
+				//点击h2，对应的ul隐藏/出现
+			    var title = $('h2');
+			    console.log(title);
+			    var onOff = null;
+			    $('.qqList').on('click',function (ev){
+			    	if (onOff) {
+			    		return;
+			    	}
+			    	onOff = true;
+			       	var target = $(ev.target);
+			        var bro = target.next();
+			        target.toggleClass('bg')
+			        if (target.hasClass('bg') ) {
+			        	//bro.addClass('hide');
+			        	bro.animate({height:'100px'},'slow',function (){
+			        	    onOff = false;
+			        	})
+			        } else{
+			        	//bro.removeClass('hide');
+			        	bro.animate({height:'0'},'slow',function (){
+			        	    onOff = false;
+			        	})
+			        }
+			        
+			    })
+			})
+		</script>
+	</body>
+</html>
