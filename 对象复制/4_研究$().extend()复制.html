@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+            
+        </style>
+        <script src="./jquery.js"></script>
+        <script>
+            var obj = {
+                a:1
+            }
+            //如果只有这一个参数将扩展jQuery这个函数上
+            var newObj = $.extend(obj);
+
+            //console.log( newObj );
+
+           console.log(  $.b );
+
+           //扩展到原型上
+
+           var obj2 = {
+                c:10
+           }
+
+           $.fn.extend(obj2);
+
+          console.log(  $().c );
+          console.log(  $.c );
+
+
+        </script>
+    </head>
+
+    <body>
+        
+    </body>
+</html>

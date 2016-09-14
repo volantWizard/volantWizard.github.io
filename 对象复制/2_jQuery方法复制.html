@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+            
+        </style>
+        <script src="./jquery.js"></script>
+        <script>
+            /*
+                .extend()
+            */
+
+           /* var obj1 = {
+                a:1
+            }
+            var obj2 ={
+                b:2
+            }*/
+            //从第二个对象开始把属性都合并到第一个对象
+           /*var newObj =  $.extend({},obj1,obj2,{c:3});
+
+            console.log( obj1 );
+            console.log( obj2 );
+            console.log( newObj );*/
+
+
+            var obj1 = {
+                a:1,
+                b:{
+                    c:2
+                }
+            }
+            //默认是浅复制
+            //第一参数为true，代表的是深复制（深拷贝）
+           var newObj =  $.extend(true,{},obj1)
+
+           console.log( newObj );
+           console.log( obj1 );
+
+           console.log( newObj.b === obj1.b );
+
+
+
+        </script>
+    </head>
+
+    <body>
+        
+    </body>
+</html>

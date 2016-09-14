@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <style>
+            
+        </style>
+        <script>
+            var obj1 = {
+                a:1,
+                b:{
+                    c:2
+                }
+            }
+
+            //复制 深复制
+
+            /*
+                数组 []
+                对象 {}
+            */
+
+            function deepClone(obj){
+                var newObj = obj.constructor === Array ? [] : {};
+                
+                for( var attr in obj ){
+                    //遇到的值是对象，继续复制
+                    if( typeof obj[attr] === 'object' ){
+                        newObj[attr] = deepClone(obj[attr]);
+                    }else{
+                        newObj[attr] = obj[attr];
+                    }
+                    
+                }   
+
+                return newObj
+            }
+			console.log(typeof 123);
+            var arr = [1,2,3,{a:1}]
+
+            var newArr = deepClone(arr);
+
+            newArr[3].abc = 1000000;
+
+            console.log( newArr );
+            console.log( arr );
+
+
+            var newObj = deepClone(obj1);
+
+            newObj.b.abc = 10000;
+
+           console.log( newObj  );
+           console.log( obj1  );
+
+           console.log( newObj.b === obj1.b );
+
+
+           
+
+
+
+
+        </script>
+    </head>
+
+    <body>
+        
+    </body>
+</html>
