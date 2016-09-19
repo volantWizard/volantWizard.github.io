@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+		<style>
+			#main {
+				width: 300px;
+				height: 500px;
+				overflow: hidden;
+				border: 1px solid #000;
+				position: absolute;
+				left: 400px;
+				top:30px;
+			}
+
+			#content{
+				background: yellow;
+				position: absolute;
+				left: 0;
+				top:0;
+				width: 100%;
+			}
+
+			p{
+				margin:0;
+			}
+			img {
+				width: 300px;				
+				vertical-align: top;
+				border: none;
+			}
+		</style>
+		
+	</head>
+
+	<body>
+		
+		<div id="main">
+			<!--<div id="scrollBox">
+				<div id="scrollBar"></div>
+			</div>-->
+			<div id="content">
+				<p>
+					<img src="1.jpg"/>
+				</p>
+			</div>
+		</div>
+		<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="jquery.scro.js" type="text/javascript" charset="utf-8"></script>
+		<script src="jquery.drag.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			/*
+			1:调用方式
+				谁调用，给谁加滚动条
+			2：允许设置皮肤
+				用户传进来对象，skin
+			3：
+			*/
+			var skin = {
+				scrollBarCss:{
+					'background':'skyblue'
+				},
+				scrollBoxCss:{
+					'width':'15px'
+				},
+				content:'#content'
+			}
+			$('#main').scrollBar(skin);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box1 {
+				position: absolute;
+				left: 0;
+				top: 0;
+				width: 230px;
+				height: 230px;
+				border-radius: 10px;
+				background: yellowgreen;
+			}
+			h2 {
+				margin: 0;
+				font: 20px "微软雅黑";
+				color: #fff;
+				background: #76C2BD;
+				text-align: center;
+			}
+		</style>
+		
+	</head>
+	<body>
+		<div id="box1">
+			<h2>我们是共产主义接班人</h2>
+		</div>
+		<!--
+			需求：
+			1：插件的调用方式
+			2：应用场景
+				某个元素调用，拖拽自身
+				某个元素调用，拖拽指定的元素
+			3：拖拽时是否限定范围
+			4：拖拽过程中，使用者可以自己定制，想要的功能
+				down:fn
+				move:fn
+				up:fn
+		-->
+		<script src="jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="jquery.drag.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('#box1').drag();
+		</script>
+		
+	</body>
+</html>
