@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			/*
+			 
+			 * localStorage   全局对象
+			 * 
+			 * 设置
+			 * 		localStorage.setItem(key,value)
+			 * 获取
+			 * 		localStorage.getItem(key)
+			 * 删除某一项
+			 * 		localStorage.removeItem(key)
+			 * 清楚所有项
+			 * 		localStorage.clear();
+			 * 一般有5M的存储
+			 * 
+			 * 方法下面有一个storage事件，
+			 * 		localStorage 增加或删除一条（就是有变动），其他页面就会触发这个事件
+			 * 		操作的那个页面不会有变化
+			 * 
+			 * 
+			 * */
+			localStorage.setItem('duyu','alsdfj')
+			localStorage.setItem('du','alsdfj')
+			console.log(localStorage.getItem('duyu'));
+			localStorage.removeItem('duyu');
+			localStorage.clear();
+			
+			window.addEventListener('storage',function (){
+			    //这里是本页操作，触发其他页面的storage，执行代码，被出发了
+			})
+		</script>
+	</body>
+</html>

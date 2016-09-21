@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div>测试</div>
+		<input type="button" value="获取数据" id="btn" />
+		<input type="button" value="获取数据get" id="btn2" />
+		<span id="message"></span>
+		<script type="text/javascript">
+			/*
+			参数说明：
+			{
+				method:get 默认  @String
+					发送方式
+					post||get
+				url:地址* @String
+					发送地址
+				
+				data:{} 默认 @Object
+					要发送的数据
+				asyn:true 默认 @Boolean
+					是否异步
+					true 异步 |false同步
+				success: function (){}  @Function
+					请求成功执行的函数
+				error: function (){}  @Function 
+					请求错误的时候执行的函数
+			}
+			 
+			 
+			 * */
+			
+			//封装函数
+			function ajax(options){
+				//设置默认的参数
+				
+				var defaults = {
+					method:'get',
+					asyn:true,
+					dataType:'text',
+					data:{},
+					success:null,
+					error:null
+				}
+				//把传进来的参数复制到默认参数上面
+				$.extend(true,defaults,options)
+				
+				//处理数据,把数据转化成字符串
+				var str = '';
+				
+				for (var attr in defaults.data) {
+					str += attr +'='+ defaults.data[attr] +'&';
+				}
+				
+				//处理str 
+				str = str.slice(0,-1);
+				//获得ajax对象
+				var xhr = new XMLHttpRequest();
+				
+				if (defaults.method.toLowerCase() === 'get') {
+					defaults.url = defaults.url + '?' + str;
+				} 
+				//准备数据传输
+				xhr.open(defaults.method,defaults.url,asyn);
+				
+				//监听ajax接受返回数据
+				xhr.onload = function (){
+				    if (xhr.status === 200) {
+				    	
+				    	//接收返回的数据状态
+				    	var data = xhr.responseText;
+				    	if (defaults.dataType === 'json') {
+				    		data = JSON.parse(data);
+				    	}
+				    	
+				    	//先判断传进来的势函数，才能 执行
+				    	typeof defaults.success === 'function' && defaults.success(data);
+				    	
+				    }else {
+				    	typeof defaults.error === 'function' && defaults.error(xhr.status,xhr.statusText);
+				    }
+				}
+				
+				//兼容发送数据
+				if (defaults.method.toLocaleLowerCase() === 'post') {
+					xhr.setRequestHeader("Content-Type",'application/x-www-form-urlencoded');
+					xhr.send(str)
+				}else if (defaults.method.toLowerCase() === 'get') {
+					xhr.send();
+				}
+			}
+			
+			btn.onclick  = function (){
+			    ajax({
+			    	url:'./php//post_json.php',
+			    	method:'post',
+			    	dataType:'json',
+			    	data:{
+			    		user:'leo',
+			    		age:30
+			    	},
+			    	successs:function (data){
+			    	    console.log(data);
+			    	},
+			    	error:function (status,statusText){
+			    	    console.log(status,statusText);
+			    	}
+			    })
+			}
+			
+		</script>
+	</body>
+</html>

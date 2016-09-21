@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+		//cookie 保持用户信息等
+		//设置cookie
+			document.cookie = 'name = duyu'
+		//获取cookie
+		document.cookie;
+		
+		//设置过期时间
+		expires = +d.toUTCString()
+		var d = new Date();
+		d.setMilliseconds()
+		
+		//设置cookie,保存cookie不清除，设置t>0
+		function setCookie(key,value,t){
+			var d = new Date();
+			if (t>0) {
+			    document.cookie = key +'=' +value +'; exprise = '+ d.setDate(d.getDate()+t).toUTCString();
+			}else {
+				document.cookie = key +'=' +value ;
+			}
+		}
+		
+		//获取cookie,document.
+		function getCookie(key){
+		    var cookies = document.cookie.split('; ');
+		    for (var i = 0; i < cookies.length; i++) {
+		    	var str = cookies[i].split('=');
+		    	if (str[0] == key) {
+		    		return str[1];
+		    	}
+		    }
+		    return null;
+		}
+		
+		//删除coolie ,设置过期时间：：：expires为当前时间之前
+		function remove(key){
+			setCookie(key,'',-1)	    
+		}
+		</script>
+	</body>
+</html>
