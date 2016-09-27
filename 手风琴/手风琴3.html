@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+    <style>
+
+      li{
+        list-style: none;
+      }
+      ul,li {
+        padding: 0;
+        margin:0;
+      }
+  .fold_wrap{width:1200px;overflow:hidden;margin:0 auto;}
+  .fold_wrap ul{width:1200px;height:260px;margin:0 auto;overflow:hidden;}
+  .fold_wrap  ul li{float:left;width:130px;height:260px;position:relative;overflow:hidden;cursor:pointer;}
+    </style>
+    <script src="jquery-2.2.2.min.js"></script>
+    
+  </head>
+
+  <body>
+      <div class="fold_wrap">
+        <ul class="clearfix" id="sm">
+            <li>
+              <img src="1.jpg">
+            </li>
+            <li>
+              <img src="2.jpg">
+            </li>
+            <li>
+              <img src="3.jpg">
+            </li>
+            <li>
+              <img src="4.jpg">
+            </li>
+            <li>
+              <img src="5.jpg">
+            </li>
+            <li>
+              <img src="6.jpg">
+            </li>
+            <li>
+              <img src="7.jpg">
+            </li>
+        </ul>
+      </div>
+			<script>
+   window.onload=function(){var e=$("#sm");var k=e.find("li");var g=k.length;var d=e.width();var h=400;var j=Math.floor((d-h)/(g-1));var c=d/g;var f=e[0].getElementsByTagName("li");var b=null;var a=null;k.on("mouseover",function(){var l=this;clearInterval(a);clearInterval(b);b=setInterval(function(){i(l)},30)});b=setInterval(function(){i(k[0])},30);function i(r){var l=parseInt(r.offsetWidth);if(l<400){var q=0;for(var n=0;n<g;n++){if(f[n]!==r){var m=f[n].offsetWidth,p=0;if(m>j){p=Math.floor((m-j)/10);p=(p>0)?p:1;f[n].style.width=(m-p)+"px"}q=q+(m-p)}}var o=d-q;if(o>400){o=400}r.style.width=o+"px"}else{clearInterval(a);clearInterval(b)}}k.on("mouseout",function(){var l=this;clearInterval(a);clearInterval(b);a=setInterval(function(){var m=parseInt(l.offsetWidth);if(m>c){var q=0;for(var o=0;o<g;o++){if(f[o]!==l){var n=f[o].offsetWidth,p=0;if(n<c){p=Math.floor((c-n)/10);p=(p>0)?p:1;f[o].style.width=(n+p)+"px"}q=q+(n+p)}l.style.width=(d-q)+"px"}}else{clearInterval(a);clearInterval(b)}},30)})};
+    </script>
+  </body>
+</html>
