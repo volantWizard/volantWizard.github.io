@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				background: #000;
+			}
+			#line{
+				width: 100%;
+				height: 1px;
+				position: absolute;
+				background: #CCCCCC;
+				bottom: 50px;
+				
+			}
+			div{
+				position: absolute;
+			}
+			
+		</style>
+		<script>
+			//获取style样式的值
+			//obj: 要获取的style样式的目标元素节点
+			//attr: 要获取的样式的属性值
+			function getStyle(obj, attr) {
+				if (window.getComputedStyle) { //支持IE9+, 谷歌, 火狐...
+					return getComputedStyle(obj, null)[attr];
+				} else { //IE8及以下
+					return obj.currentStyle[attr];
+				}
+			}
+			
+			//startMove(oList, {top: iTop, left:100, opacity:100}, next);
+			//obj: 需要移动的目标节点对象
+			//json: 包含一个或多个属性值(attr)和目标值(iTarget)
+			//fn: 运动完成后的回调函数
+			function startMove(obj, json, fn) {
+				//清除原来的定时器
+				clearInterval(obj.timer);
+			
+				//开启新定时器
+				obj.timer = setInterval(function() {
+			
+					//遍历json对象
+					for (var attr in json) {
+						//目标值
+						var iTarget = json[attr];
+			
+						//1, 当前值current
+						var current = 0;
+						//如果改的是透明度
+						if (attr == "opacity") {
+							current = parseFloat(getStyle(obj, attr)) * 100;
+							current = iTarget > current ? current : parseInt(current);
+						}
+						//如果是left/top/width/height
+						else {
+							current = parseInt(getStyle(obj, attr));
+						}
+			
+						//2, 计算速度iSpeed
+						var iSpeed = (iTarget - current) / 2;
+						iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+			
+						//3, 判断临界值
+						if (current == iTarget) {
+							clearInterval(obj.timer);
+			
+							//当运动停止后, 回调函数, 告诉调用者我的运动结束了
+							if (fn) {
+								fn(obj); //回调
+							}
+						}
+						//4, 移动/改变
+						else {
+							//透明度
+							if (attr == "opacity") {
+								obj.style.opacity = (current + iSpeed) / 100;
+								obj.style.filter = "alpha(opacity=" + (current + iSpeed) + ")";
+							}
+							//非透明度
+							else {
+								obj.style[attr] = current + iSpeed + "px";
+							}
+						}
+			
+					}
+			
+				}, 50);
+			}
+		</script>
+		<script>
+			onload = function(){
+				var oLine = document.getElementById('line');
+				document.onmousedown = function(evt){
+					var oEvent = evt || event;
+					var x = oEvent.clientX;
+					var y = oEvent.clientY;
+					
+					var color = "rgba(" + parseInt(Math.random()*256) + "," + parseInt(Math.random()*256) + "," + parseInt(Math.random()*256) + ",1)" 
+					
+					//创建烟花
+					var div1 = createDiv(x,580,5,10,color);
+					
+					//开始放烟花
+					startMove(div1,{top:y},function(){
+						//烟花到了顶端
+						//先移除div1
+						div1.parentNode.removeChild(div1);
+						
+						var angle = 20; //角度
+						var count = 18; //烟花的数量
+						var radius = 100; //半径
+						for(var i=0;i<count;i++){
+							
+							var finalAngke = i * angle;
+							var toX = radius * Math.cos(finalAngke * Math.PI/180);
+							var toY = radius * Math.sin(finalAngke * Math.PI/180);
+							
+							//console.log(toX + "," + toY);
+							var color = "rgba(" + parseInt(Math.random()*256) + "," + parseInt(Math.random()*256) + "," + parseInt(Math.random()*256) + ",1)" 
+					
+							//创建div
+							var div2 = createDiv(x,y,5,5,color)
+							div2.style.borderRadius = 5 + 'px';
+							//console.log(div2);
+							
+							startMove(div2,{left:parseInt(x+toX),top:parseInt(y+toY)},function(obj){
+								//把烟花点逐渐隐藏
+								startMove(obj,{opacity:0});
+								
+							});
+							
+						}
+						
+					})
+					
+					//创建div的函数
+					function createDiv(left,top,width,height,color){
+						var divNode = document.createElement('div');
+						divNode.style.left = left + 'px';
+						divNode.style.top = top + 'px';
+						divNode.style.width = width + 'px';
+						divNode.style.height = height + 'px'
+						divNode.style.background = color;
+						
+						//得到body节点
+						var body = document.getElementsByTagName('body')[0];
+						body.appendChild(divNode);
+						
+						return divNode;
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="line"></div>
+	</body>
+</html>

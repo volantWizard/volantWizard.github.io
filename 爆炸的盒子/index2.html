@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				margin: 60px auto;
+				overflow: hidden;
+				background: #eee;
+			}
+			#box {
+				position: relative;
+				width: 300px;
+				height: 300px;
+				margin: 0 auto;
+			}
+			#box div {
+				position: absolute;
+				width: 60px;
+				height: 60px;
+				transition: 1s;
+				transform: rotateY(0deg);
+			}
+			#box div:nth-child(even) {
+				background: deeppink;
+			}
+			#box div:nth-child(odd) {
+				background: plum;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script>
+		var box = document.getElementById("box");
+		for(var i = 0;i < 25;i++){//生成25个div
+			var boxs = document.createElement('div');
+			box.appendChild(boxs);
+		}
+		var boxs = box.getElementsByTagName('div');
+		var oneDivH = parseInt(getComputedStyle(boxs[0]).height);//获取一个div的height
+		var oneDivW = parseInt(getComputedStyle(boxs[0]).width);//获取一个div的width
+		//给每一个div设置left和top值，5个一排
+		for(var i = 0;i < boxs.length;i++){
+			boxs[i].style.top = oneDivH*(Math.floor(i/5)) + 'px';
+			boxs[i].style.left = oneDivW*(i - Math.floor(i/5)*5) + 'px';
+		}
+		//定义一个空数组，把每一个div的left和top值用对象的方式保存到数组里
+		var obj0 = [];
+		for(var j = 0;j < boxs.length;j++){
+			obj0.push({
+				'left': parseInt(getComputedStyle(boxs[j]).left),
+				'top': parseInt(getComputedStyle(boxs[j]).top)
+			});
+		}
+		var l = 25;
+		var onOff;
+		document.onclick = function(){
+			if(onOff)return;//如果为false
+			onOff = true;
+			var randomArr = [];
+			var obj2 = {};
+			while( randomArr.length < 25 ){
+				var n = Math.round(Math.random()*100); 
+				if( !obj2[n] ){ //如果n作为obj的key值是不存在的，返回的值为undefined，取反之后为true
+					randomArr.push(n);
+					obj2[n] = 1;
+				}
+			}
+			console.log(randomArr)
+			for(var k = 0;k < boxs.length;k++){
+				l--;
+				boxs[k].style.transform = "rotateY(400deg)";
+				boxs[k].style.left = randomArr[k]*8 + 'px';
+				boxs[k].style.top = randomArr[l]*8 + 'px';
+				boxs[k].style.borderRadius = "50%";
+				setTimeout(function(){
+					for(var k = 0;k < boxs.length;k++){
+						boxs[k].style.transform = "rotateY(0deg)";
+						boxs[k].style.left = obj0[k].left + 'px';
+						boxs[k].style.top = obj0[k].top + 'px';
+						boxs[k].style.borderRadius = '0%';
+					}
+					setTimeout(function(){
+						onOff = false;
+					},1000)
+				},1000)
+			}
+		}
+	</script>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>练习：表</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var body1=document.getElementsByTagName('body')[0];
+      // 表盘
+      var box=document.createElement('div');
+          box.style.border="1px solid black";
+          box.style.width="440px";
+          box.style.height="440px";
+          box.style.position="relative";
+          box.style.borderRadius="440px";
+          //box.style.backgroundImage="url(img/dnn1.jpg)";
+          box.style.backgroundSize="100% 100%";
+          body1.appendChild(box);
+      // 年月日框
+      var box_nyr=document.createElement('div');
+          // box_nyr.style.border="1px solid black";
+          box_nyr.style.width="140px";
+          box_nyr.style.height="30px";
+          box_nyr.style.fontSize="30px";
+          box_nyr.style.position="absolute";
+          box_nyr.style.top="90px";
+          box_nyr.style.left="150px";
+          box.appendChild(box_nyr);
+      // 表盘数字
+      for (var i = 1; i <= 4; i++) {
+          var boxzi=document.createElement('div');
+          boxzi.setAttribute("class","zi_box");
+          boxzi.style.width="40px";
+          boxzi.style.height="40px";
+          boxzi.style.fontSize="35px";
+          boxzi.innerText=i*3;
+          box.appendChild(boxzi);
+      }
+      var zi=document.getElementsByClassName('zi_box');
+          zi[0].style.position="absolute";
+          zi[0].style.top="205px";
+          zi[0].style.left="390px";
+          zi[1].style.position="absolute";
+          zi[1].style.top="380px";
+          zi[1].style.left="210px";
+          zi[2].style.position="absolute";
+          zi[2].style.top="205px";
+          zi[2].style.left="30px";
+          zi[3].style.position="absolute";
+          zi[3].style.top="30px";
+          zi[3].style.left="200px";
+      // 表盘刻度
+      for (var i = 1; i <= 30; i++) {
+        if (i % 5 == 0) {
+          var box1=document.createElement('div');
+              box1.style.width="390px";
+              box1.style.height="4px";
+              box1.style.borderLeft="25px solid black";
+              box1.style.borderRight="25px solid black";
+              box1.style.position="absolute";
+              box1.style.top="218px";
+              box1.style.left="0px";
+              //每个div旋转的度数，利用拼接和乘法
+              box1.style.transform='rotateZ('+30*i+'deg)'; //重点
+              box.appendChild(box1);
+      }else {
+          var box2=document.createElement('div');
+              box2.style.width="410px";
+              box2.style.height="2px";
+              box2.style.borderLeft="15px solid black";
+              box2.style.borderRight="15px solid black";
+              box2.style.position="absolute";
+              box2.style.top="218px";
+              box2.style.left="0px";
+              box2.style.transform='rotateZ('+6*i+'deg)';
+              box.appendChild(box2);
+            }
+          }
+      // 中心点
+      var box_centre=document.createElement('div');
+          box_centre.style.width="10px";
+          box_centre.style.height="10px";
+          box_centre.style.border="1px solid red";
+          box_centre.style.background="red";
+          box_centre.style.borderRadius="10px";
+          box_centre.style.position="absolute";
+          box_centre.style.top="213px";
+          box_centre.style.left="214px";
+          box.appendChild(box_centre);
+      // 秒针
+      var second_hand=document.createElement('div');
+          second_hand.style.width="4px";
+          second_hand.style.height="40px";
+          // second_hand.style.background="red";
+          second_hand.style.borderTop="130px solid black";
+          second_hand.style.borderBottom="130px solid transparent";
+          second_hand.style.position="absolute";
+          second_hand.style.top="70px";
+          second_hand.style.left="218px";
+          box.appendChild(second_hand);
+
+      // 分针
+      var minute_hand=document.createElement('div');
+          minute_hand.style.width="6px";
+          minute_hand.style.height="40px";
+          // minute_hand.style.background="red";
+          minute_hand.style.borderTop="100px solid black";
+          minute_hand.style.borderBottom="100px solid transparent";
+          minute_hand.style.position="absolute";
+          minute_hand.style.top="100px";
+          minute_hand.style.left="217px";
+          box.appendChild(minute_hand);
+      // 时针
+      var hour_hand=document.createElement('div');
+          hour_hand.style.width="10px";
+          hour_hand.style.height="40px";
+          hour_hand.style.borderTop="80px solid black";
+          hour_hand.style.borderBottom="80px solid transparent";
+          hour_hand.style.position="absolute";
+          hour_hand.style.top="120px";
+          hour_hand.style.left="215px";
+          box.appendChild(hour_hand);
+      // 时间
+      function dn1(){
+        var myDate=new Date;
+        var second=myDate.getSeconds();
+        var minute=myDate.getMinutes();
+        var hour=myDate.getHours();
+        second_hand.style.transform="rotate("+second*6+"deg)";
+        minute_hand.style.transform="rotate("+(minute+second/60)*6+"deg)";
+        hour_hand.style.transform="rotate("+(hour+minute/60+second/3600)*30+"deg)";
+      }
+      dn1();
+      // 时间走动
+      setInterval( 'dn1()', 1000);
+      // 年月日
+      myDate=new Date;
+      var year=myDate.getFullYear();
+      var month=myDate.getMonth();
+      var day=myDate.getDate();
+      box_nyr.innerText=year+'.'+month+'.'+day;
+    </script>
+  </body>
+</html>

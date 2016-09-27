@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>爆炸</title>
+		<style type="text/css">
+			body {
+				margin: 60px auto;
+				overflow: hidden;
+				background: #eee;
+			}
+			#box {
+				position: relative;
+				width: 300px;
+				height: 300px;
+				margin: 0 auto;
+			}
+			#box div {
+				float: left;
+				/*position: absolute;*/
+				width: 60px;
+				height: 60px;
+				transition: 1s;
+				transform: rotateY(0deg);
+			}
+			#box div:nth-child(even) {
+				background: deeppink;
+			}
+			#box div:nth-child(odd) {
+				background: plum;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+	</body>
+	<script>
+		var box = document.getElementById("box");
+		for(var i = 0;i < 25;i++){//生成25个div
+			var boxs = document.createElement('div');
+			box.appendChild(boxs);
+		}
+		var boxs = box.getElementsByTagName('div');
+		var obj0 = [];
+		//获取每个div的left和top值
+		for(var i=0; i<boxs.length; i++){
+			obj0.push({top:boxs[i].offsetTop,left:boxs[i].offsetLeft});
+		}
+		//转换布局，boxs由浮动---->定位
+		for(var i=0; i<boxs.length; i++){
+			boxs[i].style.position = 'absolute';
+			boxs[i].style.left = obj0[i].left + 'px';
+			boxs[i].style.top = obj0[i].top + 'px';
+		}
+		var l = boxs.length;//25
+		var onOff = false;//定义一个开关，用于处理狂点
+		//点击document,小div开始慢慢散开，然后慢慢回到原始位置
+		document.onclick = function(){
+			if(onOff)return;//如果为false
+			onOff = true;
+			var randomArr = [];
+			var obj2 = {};
+			while( randomArr.length < 25 ){
+				var n = Math.round(Math.random()*100) - 30; 
+				if( !obj2[n] ){ //如果n作为obj2的key值是不存在的，返回的值为undefined，取反之后为true
+					randomArr.push(n);
+					obj2[n] = 1;
+				}
+			}
+			console.log(randomArr);
+			for(var k = 0;k < boxs.length;k++){//点击document的时候，各个div的top值和left值为随机数
+				l--;
+				boxs[k].style.transform = "rotateY(360deg)";
+				boxs[k].style.left = randomArr[k]*10 + 'px';
+				boxs[k].style.top = randomArr[l]*10 + 'px';
+				boxs[k].style.borderRadius = "50%";
+			}
+			setTimeout(function(){//用延时定时器，等div散开之后，再慢慢回到初始状态
+				for(var k = 0;k < boxs.length;k++){
+					boxs[k].style.transform = "rotateY(0deg)";
+					boxs[k].style.left = obj0[k].left + 'px';//div的left 和 top值为散开之前的left top值
+					boxs[k].style.top = obj0[k].top + 'px';
+					boxs[k].style.borderRadius = '0%';
+				}
+				setTimeout(function(){
+					onOff = false;
+					l = boxs.length;
+				},1000)
+			},1000)
+		}
+	</script>
+</html>

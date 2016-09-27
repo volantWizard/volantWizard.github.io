@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="jquery.fullPage.css">
+    <script src="jquery.js"></script>
+    <script src="jquery.fullPage.js"></script>
+    <script src="vendors/jquery.easings.min.js"></script>
+    <!--用于 easing 参数，也可以使用完整的 jQuery UI 代替，如果不需要设置 easing 参数，可去掉改文件 -->
+    <script src="vendors/scrolloverflow.min.js"></script>
+    <!--如果 scrollOverflow 设置为 true，则需要引入 jquery.slimscroll.min.js，一般情况下不需要 -->
+    <style>
+        /* Reset CSS
+         * --------------------------------------- */
+        body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,
+        form,fieldset,input,textarea,p,blockquote,th,td {
+            padding: 0;
+            margin: 0;
+        }
+        a{
+            text-decoration:none;
+        }
+        table {
+            border-spacing: 0;
+        }
+        fieldset,img {
+            border: 0;
+        }
+        address,caption,cite,code,dfn,em,strong,th,var {
+            font-weight: normal;
+            font-style: normal;
+        }
+        strong{
+            font-weight: bold;
+        }
+        ol,ul {
+            list-style: none;
+            margin:0;
+            padding:0;
+        }
+        caption,th {
+            text-align: left;
+
+        }
+        h1,h2,h3,h4,h5,h6 {
+            font-weight: normal;
+            font-size: 100%;
+            margin:0;
+            padding:0;
+            color:#444;
+        }
+        q:before,q:after {
+            content:'';
+        }
+        abbr,acronym { border: 0;
+        }
+
+
+        /* Custom CSS
+         * --------------------------------------- */
+        body{
+            font-family: arial,helvetica;
+            color: #F2F2F2;
+        }
+        h1{
+            font-size: 6em;
+        }
+        p{
+            font-size: 2em;
+        }
+        .content{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+        }
+
+        .content img {
+            width: 100px;
+            height: 100px;
+            transition: .5s;
+        }
+        
+
+        /* Section 1
+         * --------------------------------------- */
+        #section0{
+
+        }
+
+        @keyframes animate1{
+            0%{
+                -webkit-transform:rotateZ(0deg);
+            }
+            100%{
+                -webkit-transform:rotateZ(360deg);
+            }
+        }
+
+        @keyframes animate2{
+            0%{
+                -webkit-transform:rotateZ(360deg);
+            }
+            100%{
+                -webkit-transform:rotateZ(0deg);
+            }
+        }
+
+        #section0 .circle {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 440px;
+            height: 440px;
+            background: url("imgs/333333.jpg") no-repeat;
+            z-index: 2;
+            background-size: contain;
+        }
+        #section0 .circle .pic {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: url("imgs/111111.png") no-repeat;
+            animation: 15s animate1 linear; 
+            animation-name:animate1;
+            /* animation-delay:1s; */
+            animation-iteration-count:infinite;
+        }
+
+        #section0 .circle .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 200px;
+            margin-top: -100px;
+            margin-left: -100px;
+            background:red url("imgs/222222.png") no-repeat;
+            background-size: contain;
+            animation: 15s animate2 linear; 
+            animation-name:animate2;
+            /* animation-delay:1s; */
+            animation-iteration-count:infinite;
+        }
+
+        #section0 h1{
+            color: #444;
+        }
+        #section0 p{
+            color: #333;
+            opacity: 0.4;
+        }
+
+
+        /* Section 2
+         * --------------------------------------- */
+        #section1{
+            background-color: #2EBE21;
+        }
+
+        #section1 .imgWrap {
+            width:100%; 
+            position:absolute; 
+            top:-200px; 
+            text-align:center;
+        }
+
+        #section1 h1{
+            color: #fff;
+        }
+        #section1 p{
+            opacity: 0.8;
+        }
+
+
+        /* Section 3
+         * --------------------------------------- */
+        #section2{
+            background-color: #8C3E50;
+        }
+        #section2 h1{
+            color: #F2F2F2;
+        }
+        #section2 p{
+            opacity: 0.6;
+        }
+
+        #section3{
+            background-color:#993300;
+        }
+        #section3 h1{
+            color: #F2F2F2;
+        }
+        #section3 p{
+            opacity: 0.6;
+        }
+
+        
+    </style>
+    <script>
+
+        //  fullpage特点：
+        // （1）支持鼠标滚动
+        // （2）支持前进后退和键盘控制
+        // （3）多个回调函数
+        // （4）支持手机、平板触摸事件
+        // （5）支持 CSS3 动画
+        // （6）支持窗口缩放
+        // （7）窗口缩放时自动调整
+        // （8）可设置滚动宽度、背景颜色、滚动速度、循环选项、回调、文本对齐方式等等 
+
+        $(document).ready(function() {
+
+            $("#fullpage").fullpage('#fullpage', {
+                anchors: ['firstPage', 'secondPage', '3rdPage', '4thpage', 'lastPage'],
+                menu: '#menu',
+                css3: true
+            });
+            
+            var section0Height = $("#section0").height();
+            var section0Width = $("#section0").width();
+
+            var circle = $(".circle");
+
+            circle.css({
+                left: section0Width/2,
+                top: -section0Height/2,
+                marginLeft: -circle.outerWidth()/2,
+                marginTop: -circle.outerHeight()/2
+            });
+
+            var aImgs = $("img");
+            var oDiv = $(".imgWrap")
+
+
+            aImgs.hover(function (ev){
+
+                // var ind = $(this).eq();
+                // var x = $(this).offset().left + $(this).outerWidth()/2;
+                // var y = $(this).offset().top + $(this).outerWidth()/2 + oDiv.outerHeight();
+                
+                // var b = ev.pageX - x;
+                // var a = ev.pageY - y;
+                
+                // var c = Math.sqrt(Math.pow(b,2) + Math.pow(a,2));
+                
+                // var scale = 1 - c/300;
+                
+                // if(scale<0.5){
+                //     scale = 0.5;
+                // }
+                
+                $(this).css({
+                    width: 150,
+                    height: 150
+                });
+
+            },function (){
+                $(this).css({
+                    width: 100,
+                    height: 100
+                })
+            })
+                
+        });
+    </script>
+</head>
+<body>
+    <div id="fullpage">
+        <div class="section" id="section0">
+            <div class="content">
+                <h1>Section 1</h1>
+                <p>这是第一屏</p>
+                <div class="circle">
+                    <div class="pic"> 
+                        <div class="center"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section1">
+            <div class="slide" id="slide1">
+                <div class="content">
+                    <p>这是第二屏</p>
+                    <div class="imgWrap">
+                        <img src="imgs/111.png" alt="">
+                        <img src="imgs/222.png" alt="">
+                        <img src="imgs/333.png" alt="">
+                        <img src="imgs/444.png" alt="">
+                        <img src="imgs/555.png" alt="">
+                        <img src="imgs/666.png" alt="">
+                        <img src="imgs/777.png" alt="">
+                        <img src="imgs/888.png" alt="">
+                    </div>
+                    <h1>Slide 1</h1>
+                </div>
+            </div>
+            <div class="slide" id="slide2">
+                <div class="content">
+                    <h1>Slide 2</h1>
+                </div>
+            </div>
+            <div class="slide" id="slide2">
+                <div class="content">
+                    <h1>Slide 3</h1>
+                </div>
+            </div>
+        </div>
+        <div class="section" id="section2">
+            <div class="content">
+                <h1>Section 3</h1>
+                <p>这是第三屏</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+    

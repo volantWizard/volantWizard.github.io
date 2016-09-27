@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+	body{
+		margin:0;
+		padding:0;
+	}
+	#box{
+		width:50px;
+		height:50px;
+		background:red;
+		position:absolute;
+		left:0;
+		top:0;
+		margin:0;
+	}
+</style>
+
+<script>
+/*www.w3cfuns.com   前端网*/
+window.onload=function(){
+	oDiv=document.getElementById('box');
+	//l的设定是div的offsetLeft 会在设定x方向的初始速度用到，初始为0 ；
+	var l=0;
+	var t=0;
+	//x方向的速度  提到全局变量 拖拽函数  定时器中都会在它的值进行操作  
+	var ispeedX=0;
+	var ispeedY=0;
+	//设定的定时器 在全局给他一个初始值
+	var timer=null;
+	oDiv.onmousedown=function(ev){
+		//clearInterval(timer);
+		var ev=ev||event;
+		var disX=ev.clientX - oDiv.offsetLeft;
+		var disY=ev.clientY - oDiv.offsetTop;
+		document.onmousemove=function(ev){
+			var ev=ev||event;
+			oDiv.style.left= ev.clientX - disX + 'px';
+			oDiv.style.top=ev.clientY -disY + 'px';
+			//给定运动的初始速度值，即每一帧运动的距离
+  //v = s/t
+		    ispeedX=oDiv.offsetLeft-l;
+			ispeedY=oDiv.offsetTop-t;
+				l=oDiv.offsetLeft;
+				t=oDiv.offsetTop;
+				//console.log(ispeedX)
+			}//onmousemove
+		
+		document.onmouseup=function(){
+			document.onmouseup = document.onmousemove=null;
+			//保证页面中只开一个定时器
+			clearInterval(timer);
+			boomMove(oDiv);
+		}//onmouseup
+	}//onmousedown
+	 
+	function boomMove(obj){
+	//右侧边界
+	var clientX=document.documentElement.clientWidth-obj.offsetWidth||document.body.clientWidth-obj.offsetWidth;
+	//底侧边界   
+    var clientY=document.documentElement.clientHeight-obj.offsetHeight||document.body.clientHeight-obj.offsetHeight; 
+	 //通过定时器对运动中每一帧画面进行处理
+	timer=setInterval(
+		function(){
+		//纵向速度不断增加，模拟自由落体运动  
+			ispeedY +=3;
+			//x轴坐标
+			var x= obj.offsetLeft + ispeedX;
+			//Y轴坐标
+	        var y= obj.offsetTop + ispeedY;	
+	        //console.log(x,clientX)
+	        //与右侧碰撞
+	        if(x>clientX){
+				x=clientX;
+				//速度取反， 实现回弹效果
+				ispeedX *=-1;
+			};
+			//与左侧碰撞
+			if(x<0){
+				x=0;
+				ispeedX *=-1;	 
+			};
+			//超过底部边界
+		    if(y>clientY){
+		    	//console.log(y,clientY)
+				y=clientY;
+			 	//速度取反， 模拟阻力
+				ispeedY *=-0.8;
+				ispeedX *=0.9;	  
+			};
+			//与上部碰撞
+			if(y<0){
+				y=0;
+				ispeedY *=-1	 
+			};
+			  
+			  //console.log(ispeedX)
+		    obj.style.left= x  + 'px';
+		    obj.style.top= y   + 'px'; 
+			//减少细微的小运动，
+			if(Math.abs(ispeedX)<1){ispeedX=0;};
+			if(Math.abs(ispeedY)<1){ispeedY=0;};
+			//横向速度纵向速度为0，并且与地面接触
+			if(ispeedX==0&&ispeedY==0&&oDiv.offsetTop==clientY){
+				clearInterval(timer); 
+			}
+		 	 
+		},30) ; 
+       }
+		
+  }
+</script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>

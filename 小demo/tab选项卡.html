@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+
+        .tabnav{
+            padding: 0;
+            margin: 0;
+        }
+        .tabnav li{
+            position: relative;
+            display: inline-block;
+             vertical-align: top;
+            margin-top: 3px;
+            line-height: 36px;
+            font-weight: normal;
+            color: #999;
+            background: #fcfcfc;
+            border: solid #ddd;
+            border-width: 1px 1px 0;
+            border-radius: 5px 5px 0 0;
+            padding-bottom: 0;
+            bottom: auto;
+            cursor: pointer;
+        }
+        .tabnav li a{
+            display: block;
+            min-width: 60px;
+            padding: 0 15px;
+            color: inherit;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px 4px 0 0;
+            -webkit-border-radius: 4px 4px 0 0 ;
+            line-height: 34px;
+        }
+        .tabnav .active{
+            bottom:-1px;
+        }
+        .tabnav .active a{
+            background-color:#fff;
+        }
+        .tab-con{
+            width: 300px;
+            height: 200px;
+            border: 1px solid #eeeeee;
+        }
+        .clearfix:after {content: "";display: block;height: 0;clear: both;}
+        .clearfix {zoom: 1;}
+    </style>
+</head>
+<body>
+
+    <div id="tab" class="tab">
+        <ul id="tabnav" class="tabnav clearfix">
+            <li class="active"><a>蔬菜</a></li>
+            <li><a>水果</a></li>
+            <li><a>主食</a></li>
+        </ul>
+        <div class="tab-con" style="display: block">1111</div>
+        <div class="tab-con" style="display: none">2222</div>
+        <div class="tab-con" style="display: none">3333</div>
+    </div>
+    <script>
+//        普通方法;
+//        var oTab = null;
+//        var oBtn = null;
+//        var oCon = null;
+//        window.onload =function(){
+//            oTab = document.getElementById('tab');
+//            oBtn = oTab.getElementsByTagName('input');
+//            oCon = oTab.getElementsByTagName('div');
+//            int();
+//        }
+//        function int(){
+//            for (var i = 0;i < oBtn.length;i++){
+//                oBtn[i].index = i;
+//                oBtn[i].onclick = ChangeTabCon;
+//            }
+//        }
+//        function ChangeTabCon(){
+//            for( var i = 0; i < oBtn.length;i++){
+//                oBtn[i].className = '';
+//                oCon[i].style.display = 'none'
+//
+//            }
+//            this.className = 'active';
+//            oCon[this.index].style.display = 'block';
+//        }
+
+//面向对象
+        window.onload =function(){
+            var tab = new Tab();
+            tab.int();
+//            tab.AutoPlay();
+
+        }
+
+        function Tab(){
+            this.oTab = document.getElementById('tab');
+            this.oNav = document.getElementById('tabnav');
+            this.oBtn = this.oNav.getElementsByTagName('li');
+            this.oCon = this.oTab.getElementsByTagName('div');
+            this.iNow = 0;
+        }
+        Tab.prototype.int = function(){
+            var THis =this;
+            for (var i = 0;i < this.oBtn.length;i++){
+                this.oBtn[i].index = i;
+                this.oBtn[i].onclick = function(){
+                    THis.ChangeTabCon(this);
+                }
+            }
+        }
+        Tab.prototype.ChangeTabCon = function(obj){
+            for( var i = 0; i < this.oBtn.length;i++){
+                this.oBtn[i].className = '';
+                this.oCon[i].style.display = 'none'
+            }
+            obj.className = 'active';
+            this.oCon[obj.index].style.display = 'block';
+        }
+        Tab.prototype.AutoPlay =function(){
+            var THis = this;
+            setInterval(function(){
+                if(THis.iNow ==  THis.oBtn.length-1){
+                    THis.iNow = 0;
+                }else{
+                    THis.iNow ++ ;
+                }
+                for( var i = 0; i < THis.oBtn.length;i++){
+                    THis.oBtn[i].className = '';
+                    THis.oCon[i].style.display = 'none';
+                }
+                THis.oBtn[THis.iNow].className = 'active';
+                THis.oCon[THis.iNow].style.display = 'block';
+            },2000)
+        }
+
+    </script>
+</body>
+</html>

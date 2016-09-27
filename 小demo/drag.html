@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="zh-CN">
+<head>
+<title>drag</title>
+<meta charset="utf-8" />
+<style type="text/css">
+html,body{ margin:0 auto; text-align:center; font:12px/24px tahoma, Helvetica, Arial; }
+.clear { *zoom:1; }
+.clear:after { display:table; content:""; clear:both; }
+.main{ font:12px/24px "Microsoft YaHei"; width:960px; height:2000px; margin:100px auto; text-align:left; }
+a { transition:all .4s linear 0s; }
+a:hover { transition:all .01s linear 0s; }
+ul { list-style:none; margin:0; padding:0; }
+.box { position:absolute; bottom:0; width:300px; height:140px; border:3px solid #999; background-color:#fff; z-index:999999; }
+.box .drag { padding:3px 10px; margin:0; font-size:12px; background-image:-moz-linear-gradient(top, #fff, #f1f1f1); cursor:move; }
+.box .box-con { padding:10px; }
+</style>
+</head>
+
+<body>
+<!-- main -->
+<div class="main">
+        <div class="box" id="box">
+                <h3 id="drag" class="drag">Drag.me</h3>
+                <div class="box-con">
+                        <p>这里是框框的文字...</p>
+                        <p>支持拖拽、弹性运动、自由落体、碰撞</p>
+                </div>
+        </div>
+</div>
+<script type="text/javascript">
+window.onload = function() {
+
+var oBox = document.getElementById('box');
+var oDrag = document.getElementById('drag');
+var iW = oBox.offsetWidth,
+        iH = oBox.offsetHeight,
+        clientW = document.documentElement.clientWidth,
+        clientH = document.documentElement.clientHeight,
+        scrollY = document.documentElement.scrollTop || document.body.scrollTop,
+        iSpeedX = 0,
+        iSpeedY = 0, 
+        timer = null;
+
+function move(){
+        clearInterval(timer);
+        timer = setInterval(function(){
+                iSpeedY += 5;
+
+                var l = oBox.offsetLeft + iSpeedX;
+                var t = oBox.offsetTop + iSpeedY;
+
+                if(t > clientH-iH){
+                        t = clientH - iH + scrollY;
+                        iSpeedY *= -1;
+                        iSpeedY *= .7;
+                        iSpeedX *= .7;
+                }else if(t <0 ){
+                        t = 0;
+                        iSpeedY *= -1;
+                        iSpeedY *= .7;
+                }
+
+                if(l > clientW-iW){
+                        l = clientW - iW;
+                        iSpeedX *= -1;
+                        iSpeedX *= .7;
+                }else if(l < 0){
+                        l = 0;
+                        iSpeedX *= -1;
+                        iSpeedX *= .7;
+                }
+
+                oBox.style.left = l + 'px';
+                oBox.style.top = t + 'px';
+
+        }, 30);
+}
+
+oDrag.onmousedown = function(ev){
+        var e = ev || window.event,
+                preX = e.clientX,
+                preY = e.clientY,
+                x = preX - oBox.offsetLeft,
+                y = preY - oBox.offsetTop;
+
+        clearInterval(timer);
+
+        if(oBox.setCapture){ oBox.setCapture(); }
+        
+        document.onmousemove = function(ev){
+                var e = ev || window.event,
+                        left = e.clientX - x,
+                        top = e.clientY - y;
+
+                        if(left < 0){
+                                left = 0;
+                        }else if(left > clientW - iW){
+                                left = clientW - iW;
+                        }
+
+                        if(top < 0){
+                                top = 0;
+                        }
+                        
+                        oBox.style.left = left + 'px';
+                        oBox.style.top = top + 'px';
+
+                        iSpeedX = e.clientX - preX;
+                        iSpeedY = e.clientY - preY;
+
+                        preX = e.clientX;
+                        preY = e.clientY;
+        }
+
+        document.onmouseup = function(){
+                
+                document.onmousemove = null;
+                document.onmouseup = null;
+                
+                if(oBox.releaseCapture) { oBox.releaseCapture(); }
+                
+                move();
+
+        }
+        return false;
+}
+
+}
+</script>
+</body>
+</html>

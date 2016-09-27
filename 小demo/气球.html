@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>抽奖</title>
+	<style>
+	html,body{
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+	.bg{
+		position: relative;
+		width:100%;
+		height: 100%;
+		background-color: #1492ff;
+	}
+	.bg>div[class^=ball-]{
+		position: absolute;
+		border:2px solid #fff;
+		transition: transform 1.5s;
+		-moz-transition: transform 1.5s;	/* Firefox 4 */
+		-webkit-transition: transform 1.5s;	/* Safari 和 Chrome */
+		-o-transition: transform 1.5s;	/* Opera */  
+	}
+	.bg>div[class^=ball-]:before{
+		display: block;
+		content: "";
+		width: 10px;
+		height: 10px;
+		margin: 15px;
+		border-radius: 5px;
+		background-color: #fff;
+	}
+	.ball-1{
+		background-color: #dde9d6;
+	}
+	.ball-2{
+		width: 30px;
+		height: 30px;
+		background-color: #ee8fed;
+	}
+	.ball-3{
+		background-color: #edee8f;
+	}
+	.time{
+		position: fixed;
+		top:10px;
+		left: 10px;
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		border-radius: 23px;
+		border:3px solid #285f1d;
+		text-align: center;
+		z-index: 2;
+		font-weight: bold;
+		color:#285f1d;
+	}
+	.message{
+		position: absolute;
+		top:50%;
+		width: 100%;
+		text-align: center;
+	}
+	.message span{
+		color:#a21b28;
+	}
+	</style>
+</head>
+<body>
+	<div class="time" id="timer"></div>
+	<div class="bg" id="playground">
+	</div>
+	<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+	<script>
+	    $(function() {
+	var b1 = $('<div class="ball-1"></div>'),
+		b2 = $('<div class="ball-2"></div>'),
+		b3 = $('<div class="ball-3"></div>'),
+		clock = $('#timer');
+	var arr = [b1, b2, b3],
+		ballArr = [],
+		MinBallSize = 50,
+		container = $("#playground"),
+		windowHt = $(window).height(),
+		windowWt = $(window).width(),
+		time = 30;
+	container.getBallnums = 0;
+	/** [Ball description]创建球 */
+	var Ball = function() {
+		function createBallSize() {
+			var bSize = Math.ceil(Math.random(0, 1) * 50 + MinBallSize);
+			return bSize;
+		}
+
+		function createBallStyle() {
+			var random = Math.floor(Math.random(0, 1) * 3);
+			return arr[random];
+		}
+
+		function sethorizonPostion(size) {
+			var left = Math.floor(Math.random(0, 1) * (windowWt - size));
+			return left;
+		}
+
+		return {
+			create: function() {
+				var ball = createBallStyle().clone(),
+					size = createBallSize();
+				var left = sethorizonPostion(size);
+
+				ball.css({
+					"width": size + "px",
+					"height": size + "px",
+					"border-radius": size / 2 + 2 + "px",
+					"bottom": -size + "px",
+					"left": left
+				});
+				ball.index = 0;
+				return ball;
+			}
+		}
+	};
+	/** [addBallToGround description]将球加入容器 */
+	function addBallToGround() {
+		var ball = Ball().create();
+		container.append(ball);
+		return ball;
+	}
+	/** [setClock description]设置倒计时 */
+	function setClock() {
+		clock.html(time--);
+		if (time == -1) {
+			window.clearInterval(timer);
+			var percent = container.getBallnums == 0 ? 0 : (container.getBallnums * 1.0 / ballArr.length).toFixed(2) * 100;
+			container.html('<div class="message">本次成绩1：命中率<span>' + percent + '</span>％</div>');
+		}
+	}
+
+	var timer = window.setInterval(function() {
+		var radmon = Math.floor(Math.random(0, 1) * 100);
+		var curArr = [];
+
+		setClock();
+		if (radmon % 3 == 0 || !container.html().trim()) {
+			ballArr.push(addBallToGround());
+		}
+		for (var i = 0; i < ballArr.length; i++) {
+			var ball = ballArr[i];
+			var moveLenth = windowHt - ball.offset().top;
+			ball.css({
+				"transform": 'translateY(-' + (windowHt + ball.width()) + "px)"
+			});
+			if (moveLenth > windowHt) {
+				ball.remove();
+			}
+		}
+
+	}, 1000);
+
+	container.on("click", "div", function() {
+		$(this).remove();
+		container.getBallnums++;
+	});
+});
+	</script>
+</body>
+</html>
