@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>碰壁反弹</title>
+		<style>
+			body{
+				margin:0;
+			}
+			#wrap{
+				height: 500px;
+				width: 800px;
+				border: 1px solid #000;
+				position: relative;
+				margin:20px auto 0; 
+			}
+			#ball{
+				height: 50px;
+				width: 50px;
+				position: absolute;
+				background: #09f;
+				border-radius: 100%;
+				left: 0px; 
+			}
+			#wrap div:nth-of-type(2){
+				width: 150px;
+				height: 150px;
+				background: deepskyblue;
+				position: absolute;
+				bottom: 100px;
+				left: 180px;
+			}
+			#wrap div:nth-of-type(3){
+				width: 150px;
+				height: 150px;
+				background:deeppink;
+				position: absolute;
+				top:  0px;
+				left: 400px; 
+			}
+		</style>
+		<script src="./tools.js"></script>
+		<script>			
+			/*
+			 障碍物：obstacle 
+			对临界值的判断，一般应用：游戏
+			效果：
+				运动的球碰到父级边框或者障碍物的时候 会反向运动 并且运动的球的背景颜色也发生改变			  
+			运动原理：
+			      碰到边界的时候 通过改变运动球的left值和top值 （变量x和y的正负）来决定运动的方向
+			           为正的时候，left和top值是一直加加
+			           为负的时候 ，left和top值是一直减减
+			 注意：
+			       运动的速度 
+			        碰到障碍物角的时候	 x y都是需要反向 （通过改变left和top值的加或者加改变）  
+			 */
+			window.onload=function(){
+				//------------获取元素-----------
+				var oWrap=$("#wrap");//大的外块
+				var oBall=$("#ball");//运动的球
+				var obstacle=$(".obstacle");//障碍物	
+				 //-----------获取固定的距离----------
+				//获取运动球距离大外块的距离
+				/*
+				 clientWidth/clientHeight	不包含边框width
+				 offsetWidth/offsetHeight	包含边框width
+				*/
+				var maxLeft=oWrap.clientWidth-oBall.offsetWidth;//运动球距离外块左侧的最大距离---固定值
+				var maxTop=oWrap.clientHeight-oBall.offsetHeight;//运动球距离外块上厕最大的距离---固定值
+				//获取运动球距离障碍物间固定的四个方向的距离
+				//函数 返回的是一个对象 代表的球相对于父集的left和top值
+				function Obstacle(obs){//返回一个对象 存的是运动球在障碍物四个方向的距离父级的left和top值   传参的是每个障碍物
+					return {
+						left:obs.offsetLeft - oBall.offsetWidth,
+						right:obs.offsetLeft + obs.offsetWidth,
+						top:obs.offsetTop - oBall.offsetHeight,
+						bottom:obs.offsetTop + obs.offsetHeight
+					}; 
+				}; 				 
+				var obstacle1=Obstacle(obstacle[0]);//获得距离第一个障碍物的四个方向的距离	
+				console.log(obstacle1);//固定值
+				var obstacle2=Obstacle(obstacle[1]);//获得距离第二个障碍物的四个方向的距离	
+				console.log(obstacle2);//固定值
+				//第一个障碍物
+//				var obstacle1 = {
+//					left:obstacle[0].offsetLeft-oBall.offsetWidth,
+//					right:obstacle[0].offsetLeft+obstacle[0].offsetWidth,
+//					top:obstacle[0].offsetTop-oBall.offsetHeight,
+//					bottom:obstacle[0].offsetTop+obstacle[0].offsetHeight
+//				} 	 
+//				//第二个障碍物同理
+//				var obstacle2 = {
+//					left:obstacle[1].offsetLeft-oBall.offsetWidth,
+//					right:obstacle[1].offsetLeft+obstacle[1].offsetWidth,
+//					top:obstacle[1].offsetTop-oBall.offsetHeight,
+//					bottom:obstacle[1].offsetTop+obstacle[1].offsetHeight
+//				} 
+				//------------随机的颜色设置-------------							
+				//获取随机数运动球  控制运动球的背景颜色				 
+				function random(min,max) {//随机函数  改定取随机的范围  Math.random()  
+					return  Math.round(Math.random()*(max-min)) + min;	//调用返回的是一个随机数	
+				 }
+				function ballBg() {//球的颜色随机  通过设置rgba(,,,)
+					var r = random(0,255); 	//取0-255之间的一个随机数				
+					var g = random(0,255);
+					var b = random(0,255);
+					//console.log(r,g,b) //产生3个随机数
+					//排除白色  和大父级背景一样的颜色
+					if(r==255 && g==255 && b==255){//rgba(255,255,255,0.8),白色
+						oBall.style.background = 'rgba(0,0,0,0.8)';//黑色
+					}else{
+						oBall.style.background = 'rgba('+r+','+g+','+b+',0.8)';
+					}						 
+				}
+				//----------------运动球的运动 -----------------
+				//设置运动球开始位置   默认左上角的位置
+				var startX=0;//初始距离横轴位置
+				var startY=0;//初始距离纵轴位置
+				oBall.style.left=0;//运动球初始位置
+				oBall.style.top=0;
+				//设置运动球开始运动方向---右下方向
+				var x=1;  //从左向右运动
+				var y=1;  //从上向下运动
+				//开启一个定时器
+				var timer = null;
+				timer=setInterval(function(){ 
+				//边线  碰到之后 需要往反方向运动					
+					if(startX>maxLeft||startX<0){//左右边界
+						x*=-1; //(x = -x) 取反向值
+						ballBg();
+					};
+					if(startY>maxTop||startY<0){//上下边界
+						y*=-1;
+						ballBg();
+					}; 
+					//-----障碍物1--
+					//碰到障碍物左侧边缘的时候
+					if(startX==obstacle1.left&&startY>obstacle1.top&&startY<obstacle1.bottom){//碰到div1左边界 改变横向运动方向
+						x*=-1;						
+						ballBg();
+					}
+					//碰到障碍物上侧边缘的时候
+					if(startY==obstacle1.top&&startX>obstacle1.left&&startX<obstacle1.right){//碰到div1上边界 改变竖向运动方向
+						y*=-1;
+						ballBg();
+					}
+					//碰到障碍物右侧边缘的时候
+					if(startX==obstacle1.right&&startY>obstacle1.top&&startY<obstacle1.bottom){//碰到div1右边界 改变横向运动方向
+						x*=-1;
+						ballBg();
+					} 
+					//碰到障碍物下侧边缘的时候
+					if(startY==obstacle1.bottom&&startX>obstacle1.left&&startX<obstacle1.right){//碰到div1下边界 改变竖向运动方向
+						y*=-1;
+						ballBg();
+					}
+					//----障碍物2--
+					//碰到障碍物左下侧边缘的时候
+					if(startX==obstacle2.left&&startY>obstacle2.top&&startY<obstacle2.bottom){//碰到div2左边界 改变横向运动方向
+						x*=-1;
+						ballBg();
+					}
+					//碰到障碍物右侧边缘的时候
+					if(startX==obstacle2.right&&startY>obstacle2.top&&startY<obstacle2.bottom){//碰到div2左边界 改变横向运动方向
+						x*=-1;
+						ballBg();
+					}
+					//碰到障碍物上侧边缘的时候
+					if(startY==obstacle2.top&&startX>obstacle2.left&&startX<obstacle2.right){//碰到div2上边界 改变竖向运动方向
+						y*=-1;
+						ballBg();
+					}
+					//碰到障碍物下侧边缘的时候
+					if(startY==obstacle2.bottom&&startX>obstacle2.left&&startX<obstacle2.right){//碰到div2下边界 改变竖向运动方向
+						y*=-1;
+						ballBg();
+					}
+					//*****碰到障碍物 某角的时候***    
+					if((startX==obstacle1.left&&startY==obstacle1.top)||((startX==obstacle1.right&&startY==obstacle2.top))||((startX==obstacle1.left&&startY==obstacle1.bottom))||((startX==obstacle1.right&&startY==obstacle1.bottom))||(startX==obstacle2.left&&startY==obstacle2.bottom)){
+						x*=-1;
+						y*=-1;
+						ballBg();
+					} 
+					startX += x; //横向距离    
+					startY += y; //竖向距离   
+					//运动公式 球的位置
+					oBall.style.left = startX+"px";
+					oBall.style.top = startY+"px";
+				},6);
+			}
+		</script>
+		</head>
+		<body> 
+			<div id="wrap">
+				<div id="ball"></div>
+				<div class="obstacle"></div>
+				<div class="obstacle"></div>
+			</div>
+		</body>		
+</html>

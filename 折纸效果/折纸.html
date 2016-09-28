@@ -1,0 +1,210 @@
+	<!DOCTYPE HTML>
+	<html>
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>无标题文档</title>
+	<style>
+/*	transform 变换、变形
+		rotate()  旋转函数 取值度数
+			deg  度数
+		
+		transform-origin 旋转的基点
+				关键字 top left bottom right
+				单位设置 px %
+		
+		
+*/
+	/*每一个div展开时的动画过程*/
+	@keyframes open{
+		0%
+		{
+			transform:rotateX(-100deg);
+		}
+		25%
+		{
+			transform:rotateX(30deg);
+		}
+		50%
+		{
+			transform:rotateX(-15deg);
+		}
+		75%
+		{
+			transform:rotateX(8deg);
+			
+		}
+		100%
+		{
+			transform:rotateX(0deg);
+		}
+	}
+	@keyframes clos {
+		0%
+		{
+			transform:rotateX(0deg);
+		}
+		40%
+		{
+			transform:rotateX(20deg);
+		}
+		70%
+		{
+			transform:rotateX(-15deg);
+		}
+		100%
+		{
+			transform:rotateX(-100deg);
+		}
+	}
+	.list {
+		width: 240px;
+		position: relative;
+		margin: 0 auto;
+	}
+	
+	.list h3 {
+		margin: 0;
+		height: 40px;
+		background: #f60;
+		color: #fff;
+		line-height: 40px;
+		text-align: center;
+		font-size: 16px;
+		position: relative;
+		z-index: 10;
+	}
+	
+	.list div {
+		position: absolute;
+		top: 30px;
+		left: 0;
+		width: 100%;
+		transform-origin: top;/* 变换的基点是每个div的top值*/ 
+		transform: rotateX(-100deg);/* 旋转-120，就是让div初始的时候隐藏在h3后面 */
+		z-index: 1;
+	}
+	
+	.list>div:nth-of-type(1) {
+		top: 40px;
+	}
+	
+	.list span {
+		display: block;
+		height: 28px;
+		background: pink ;
+		color: #fff;
+		font: 14px/28px "宋体";
+		text-indent: 20px;
+	}
+	
+	.list .open {
+		transform: rotateX(0deg);
+		animation: 1.5s open ease-in;
+		/*animation : 动画时间，运动名称，运动形式  由慢到快*/
+	}
+
+	.list .clos {
+		transform: rotateX(-100deg);
+		animation: 1s clos ease-in;
+		/*animation : 动画时间，运动名称，运动形式  由慢到快*/
+	}
+	#btn {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100px;
+		height: 30px;
+		transition: 1s;
+	}</style>
+	<script>
+	window.onload=function(){
+		var btn = document.getElementById("btn");//按钮
+		var list = document.getElementsByClassName("list")[0];//列表
+		var aDiv = list.getElementsByTagName("div");//所有的列表
+		var aSpan = list.getElementsByTagName("span");
+		
+		var i = 0;//记录下标
+		var oTimer = null;
+		var timer = null;
+		var onOff = true;//
+		btn.onclick=function(){
+			btn.style.left = "-300px";//按钮先隐藏
+			if(onOff){
+				i = 0;
+				clearInterval(oTimer);
+				oTimer = setInterval(function(){
+					aDiv[i].className = "open";//列表依次展开
+					if(i == aDiv.length - 1){//全部展开后
+						clearInterval(oTimer);//清除定时器
+						btn.style.left = "0px";//按钮显示
+						btn.value = "关闭";//按钮改成关闭
+					}
+					i++;
+				},300);
+			}else{
+				i = aDiv.length - 1;//全部展开的时候 最后一个div下标
+				clearInterval(timer);
+				timer = setInterval(function(){
+						aDiv[i].className = "clos";
+						if( i == 0){//全部关闭后
+							clearInterval(timer);
+							btn.style.left = "0px";
+							btn.value = "展开";
+						}
+						i--;
+				},300);
+			}
+			onOff = !onOff;
+		};
+		//移入移出的时候
+	 	for (var i = 0; i < aSpan.length; i++) {
+	 		aSpan[i].onmouseover = function(){
+	 			this.style.background = "palegreen";
+	 		}
+	 		aSpan[i].onmouseout = function(){
+	 			for (var i = 0; i < aSpan.length; i++) {
+	 				aSpan[i].style.background = "pink";
+	 			}
+	 		}	
+	 	}
+	
+	};
+	</script>
+	</head>
+		<body>
+			<input type="button" value="展开" id="btn" />
+			<div class="list">
+				<h3>我的歌单</h3>
+				<div>
+			    	<span>红玫瑰</span>
+			        <div>
+			        	<span>富士山下</span>
+			            <div>
+			            	<span>不为谁而做的歌</span>
+			                <div>
+			                	<span>原谅</span>
+			                    <div>
+			                    	<span>岁月神偷</span>
+			                        <div>
+			                        	<span>房间</span>
+			                            <div>
+			                            	<span>命运的意义</span>
+			                                <div>
+			                                	<span>小幸运</span>
+			                                		<div>
+			                                			<span>关键词</span>
+			                                			<div>
+			                                				<span>不要说话</span>
+			                                			</div>
+			                                		</div>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			</div>
+		</body>
+	</html>
