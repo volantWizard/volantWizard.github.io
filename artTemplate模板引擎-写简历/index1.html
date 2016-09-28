@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的简历</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/different.css"/>
+		<script src="template/template.js" type="text/javascript" charset="utf-8"></script>
+		<!--下面是引入数据data-->
+		<script src="data/userInfo.js" type="text/javascript" charset="utf-8"></script>
+		<script src="data/timeAxis.js" type="text/javascript" charset="utf-8"></script>
+		<script src="data/case.js" type="text/javascript" charset="utf-8"></script>
+		<script src="data/project.js" type="text/javascript" charset="utf-8"></script>
+		<!--一引如数据结束-->
+	</head>
+	<body id="black">
+		<div class="hea_intro">
+			
+		</div>
+		<div class="timeAxis">
+			
+		</div>
+		<div class="case">
+			
+		</div>
+		<div class="project">
+			
+		</div>
+		<script type="text/html" id="user">
+			<div class="hea_intro">
+				<div class="high_light">
+					<div class="header">
+						<div class="hea_con">
+							<div class="hea_left">
+								<h3>{{userInfo.userName}}</h3>
+								<p>{{userInfo.jobWant}}</p>
+							</div>
+							<div class="hea_right">
+								<div class="hea_qq">{{userInfo.userQQ}}</div>
+								<div class="hea_mail">{{userInfo.userEmail}}</div>
+							</div>
+						</div>
+					</div>
+					<div class="intro_con clearfix">
+						{{if userInfo.motto}}
+							<div class="intro_left">
+								<p>{{userInfo.motto}}</p>
+							</div>
+						{{/if}}
+						<div class="intro_right">
+							<div class="pic"></div>
+							<div class="intro_detail">
+								<ul>
+									<li>
+										<div class="detail_left">
+											<p>手机</p>
+										</div>
+										<div class="detail_right intro_first">
+											<p class="intro_firstcon">{{userInfo.userPhone}}</p>
+										</div>
+										<div class="intro_circle"></div>
+									</li>
+									<li>
+										<div class="detail_left">
+											<p>籍贯</p>
+										</div>
+										<div class="detail_right">
+											<p>{{userInfo.userOrignPlace}}</p>
+										</div>
+										<div class="intro_circle"></div>
+									</li>
+									<li>
+										<div class="detail_left">
+											<p>所在地</p>
+										</div>
+										<div class="detail_right">
+											<p>{{userInfo.userSeatPlace}}</p>
+										</div>
+										<div class="intro_circle"></div>
+									</li>
+									<li>
+										<div class="detail_left">
+											<p>微博</p>
+										</div>
+										<div class="detail_right">
+											{{if userInfo.userWeibo}}
+												<p>{{userInfo.userWeibo}}</p>
+											{{/if}}
+										</div>
+										<div class="intro_circle"></div>
+									</li>
+									<li>
+										<div class="detail_left">
+											<p>自我评价</p>
+										</div>
+										<div class="detail_right">
+											{{if userInfo.userAssessment}}
+												<p>{{userInfo.userAssessment}}</p>
+											{{/if}}
+										</div>
+										<div class="intro_circle"></div>
+									</li>
+									<li>
+										<div class="detail_left">
+											<p>爱好</p>
+										</div>
+										<div class="detail_right">
+											{{if userInfo.userHobby}}
+												<p>{{userInfo.userHobby}}</p>
+												{{else}}
+												<p></p>
+											{{/if}}
+										</div>
+										<div class="intro_circle"></div>
+									</li>
+									<li>
+										<div class="detail_left">
+											<p>个人奖项</p>
+										</div>
+										<div class="detail_right intro_last">
+											{{if userInfo.userAward}}
+												<p>{{userInfo.userAward}}</p>
+											{{/if}}
+										</div>
+										<div class="intro_circle"></div>
+									</li>
+								</ul>	
+							</div>
+						</div>	
+					</div>	
+				</div>
+			</div>
+		</script>
+		
+		<script type="text/html" id="timeAxis">
+			<div class="timeAxis">
+				<div class="timecon">
+					<div class="skills_title">
+						<h3>工作时光轴</h3>
+						<p>有大型网站开发、优化经验</p>
+					</div>
+					<div class="timeline_top">
+						<div class="dot"></div>
+						<div class="line"></div>
+					</div>
+					<div class="exper_detail">
+						{{each timeAxisArr}}
+							{{if $index % 2 == 0}}
+								<div class="exper">
+									<div class="exper_item exper_itemL">
+										<div class="item_title">
+											<div class="ball">
+												<div class="icon"><img src="images/expre_bgL.png" /></div>
+											</div>
+											<div class="title_word">
+												<p class="date">
+													{{$value.startTime}}~{{$value.endTime}}
+													<img src="images/date.png" />
+												</p>
+												<div class="company">
+													<h4>{{$value.companyNam}}</h4>
+													<p>{{$value.jobPost}}</p>
+												</div>
+											</div>
+										</div>
+										<div class="item_con">
+											<p>{{$value.jonTask}}</p>
+											<p>{{$value.jobContent}}</p>
+										</div>
+									</div>
+								</div>
+							
+							{{else}}
+								<div class="exper">
+									<div class="exper_item">
+										<div class="item_title">
+											<div class="title_word">
+												<p class="date date2">
+													{{$value.startTime}}~{{$value.endTime}}
+													<img src="images/date.png" />
+												</p>
+												<div class="company">
+													<h4>{{$value.companyNam}}</h4>
+													<p>{{$value.jobPost}}</p>
+												</div>
+											</div>
+											<div class="ball">
+												<div class="icon icon3"><img src="images/expre_bgR.png" /></div>
+											</div>
+										</div>
+										<div class="item_con2">
+											<p>{{$value.jonTask}}</p>
+											<p>{{$value.jobContent}}</p>
+										</div>
+									</div>
+								</div>
+							{{/if}}
+						{{/each}}
+					</div>
+				</div>
+			</div>
+       
+		</script>
+		
+		<script type="text/html" id="cases">
+			<div class="case">
+				<div class="casecon">
+					<div class="case1 clearfix">
+						<div class="bts">
+							<h2 class="bt">前端知识汇总&案例展示</h2>
+						</div>
+						<div class="case_left">
+							{{each casees}}
+							<div class="case_list">
+								<h3 class="case_listbt1 ">
+									<em class="unload"></em>
+									{{$value.caseName}}
+								</h3>
+								{{if $value.caseList}}
+								<ul class="case_listcon">
+									{{each $value.caseList}}
+									<li class="case_li1">
+										<a href="#">{{$value.caseTitle}}</a>
+										<i></i>
+										<span></span>
+									</li>
+									{{/each}}
+								</ul>
+								{{/if}}
+							</div>
+							{{/each}}
+						</div>
+						<div class="case_right">
+							<h3 class="case_bt2">{{casees[0].caseList[0].caseTitle}}</h3>
+							<p class="case_time">发布时间：{{casees[0].caseList[0].publishTime}}</p>
+							<img src="images/exp.png" class="case_exp"/>
+							<p class="case_decoration">
+								{{casees[0].caseList[0].caseTitle}}
+							</p>
+							<p class="case_decoration">
+								<a href="{{casees[0].caseList[0].caseWebsite}}">{{casees[0].caseList[0].caseWebsite}}</a>
+							</p>
+							<div class="case_share clearfix">
+								<form method="" action="" class="case_sharebtn">
+									<input type="submit" value="点击预览" class="case_btn" />
+								</form>
+								<div class="case_sharelink clearfix">
+									<span>分享至：</span>
+									<a href="#" class="weibo"></a>
+									<a href="#" class="kongjian"></a>
+									<a href="#" class="weixin"></a>
+									<a href="#" class="qq"></a>
+									<a href="#" class="douban"></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</script>
+		
+		<script type="text/html" id="project">
+			<div class="bts">
+				<h2 class="bt">项目池</h2>
+				<h3 class="smallbt">业余项目与公司项目相互促进</h3>
+			</div>
+			{{each projects}}
+			<div class="project_ex">
+				<dl class="pro clearfix">
+					<dt><img src="images/project.png"/></dt>
+					<dd>
+						<h2 class="project_bt">{{$value.projectName}}</h2>
+						<p class="project_time">{{$value.startTime}}~{{$value.endTime}}</p>
+						<p class="project_dec">{{$value.projectExplain}}</p>
+						<p class="project_dec">
+							{{$value.projectWebsite}}
+						</p>
+						<p class="project_lable">
+							{{each $value.projectLabel}}
+							<span>{{$value.toUpperCase()}}</span>
+							{{/each}}
+						</p>
+					</dd>
+				</dl>
+			</div>
+			{{/each}}
+		</script>
+		<script src="src/index.js" type="text/javascript" charset="utf-8"></script>
+		<script src="src/userInfro.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
