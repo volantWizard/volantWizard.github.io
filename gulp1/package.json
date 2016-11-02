@@ -1,0 +1,16 @@
+{
+  "name": "first",
+  "version": "1.0.0",
+  "description": "this is first one",
+  "main": "index.js",
+  "scripts": {
+    "test": "null"
+  },
+  "author": "dy",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-less": "^3.1.0"
+  }
+}
