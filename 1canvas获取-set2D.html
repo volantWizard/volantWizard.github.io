@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-2.2.4.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				/*background: #000000;*/
+			}
+			canvas {
+				background: #000000;
+			}
+			/*Canvas 的默认大小为300像素×150像素
+			 只有两个属性—— width和height
+			 * 1.在css中设置
+			 * 2.js中动态设置
+			 * 3.行内设置
+			 * */
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas">
+			
+		</canvas>
+	</body>
+	<script type="text/javascript">
+		var canv = $('#canvas');
+		console.log(canv);
+		canv.width(500)
+			.height(300)
+			.css('background','#009F8A')
+	</script>
+</html>
