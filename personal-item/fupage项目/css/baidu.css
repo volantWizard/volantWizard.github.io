@@ -1,0 +1,581 @@
+
+.bd {
+	font-size: 100%;
+	background: url(../images/bg-container-b19993e.png) repeat-x;
+}
+.bd .header {
+	display: none;
+	height: 74px;
+	width: 100%;
+	z-index: 2;
+	background: none;
+	transform: translateY(-100%) ;
+}
+.bd .header .head-nav {
+	margin-top: 26px;
+	margin-left: 15px;	
+}
+.bd .head-nav li {
+	padding: 0 15px;
+}
+.bd .head-nav a {
+	display: block;
+    height: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "微软雅黑" ;
+    color: #b3b3b3;
+}
+.bd .nav-index a {
+	width: 20px;
+	overflow: hidden;
+	text-indent: -1000px;
+}
+.bd .nav-index .icon-sprite {
+	background-repeat: no-repeat;
+	background-position: 0 -23px;
+}
+.bd .header .nav-underline {
+	width: 20px;
+	height: 2px;
+	top: 50px;
+	left: 30px;
+	background: #fff;
+}
+.bd .header .download {
+	margin-top: 26px;
+	margin-right: 25px;
+}
+.bd .download a {
+	display: block;
+    height: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: "微软雅黑" ;
+    color: #b3b3b3;
+}
+.bd .download span {
+	display: block;
+	width: 17px;
+	height: 20px;
+	margin-right:11px;
+}
+.bd .download .icon-sprite {
+	background-position: -5px  -46px;
+	background-repeat: no-repeat;
+}
+.bd .download:hover a{
+	color: #FFFFFF;
+}
+.bd .download:hover span {
+	background-position: -5px  -69px;
+}
+.bd.active .header {
+	display: block;
+	animation: moveinfromtop 0.4s ease-out 1s 1 normal forwards;
+}
+.bd.leave .header {
+	display: none;
+	animation: movetotop 0.4s ease-out 0s 1 normal forwards;
+}
+.bd .bg-move {
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+.bd .space {
+	width: 3840px;
+	height: 100%;
+	z-index: 0;
+	background: url(../images/bg-space-6e69cd1.png) repeat-x;
+}
+.bd .space.space-animate{
+	transform: translate3d(0,0,0);
+	animation: moving 450s linear 0.8s infinite normal none;
+}
+
+.bd .mountains {
+	top:initial;
+	bottom: 0;
+	width: 100%;
+	height: 17.78125em;
+	overflow: hidden;
+	z-index: 0;
+	opacity: 0;
+	transition: opacity 0.2s linear 0s;
+	transform-origin: center top; 
+}
+.fp-completely .mountains-animate {
+	opacity: 1;
+	animation: mountains-in 0.8s ease-out 0s 1 normal forwards;
+}
+.bd.leave .mountains {
+	animation: mountains-leave 0.5s ease-out 0s 1 normal forwards;
+}
+.bd .mountain {
+	top: initial;
+	bottom: 0;
+	width: 240em;
+}
+
+.bd .mountain-1 {
+	height: 10.5em;
+	background: url(../images/bg-mountain-1-11661c6.png) repeat-x;
+	z-index: 3;
+	background-size: auto 100%;
+}
+.bd .mountains .mountain-1 {
+	transform: translate3d(0,0,0);
+	animation: moving 100s linear 0.8s infinite;
+}
+
+.bd .mountain-2 {
+	height: 12em;
+	background: url(../images/bg-mountain-2-f8a4360.png) repeat-x;
+	z-index: 2;
+	background-size: auto 100%;
+}
+.bd .mountains .mountain-2 {
+	transform: translate3d(0,0,0);
+	animation: moving 160s linear 0.8s infinite;
+}
+.bd .mountain-3 {
+	height: 17.78125em;
+	background: url(../images/bg-mountain-3-54c28fd.png) repeat-x;
+	z-index: 1;
+	background-size: auto 100%;
+}
+.bd .mountains .mountain-3 {
+	transform: translate3d(0,0,0);
+	animation: moving 360s linear 0.8s infinite;
+}
+
+.bd .bear {
+	left:-6.25em;
+	top: initial;
+	bottom: 40px;
+	margin-left: -3.125em;
+	width: 6.25em;
+	height: 3.125em;
+	background: url(../images/bear-25676f9.png) 0 0 no-repeat;
+	background-size: 50em 100%;
+	z-index: 1;
+	opacity: 1;
+	transition: opacity 0.4s linear 0.6s; 
+}
+.bd.fp-completely .bear.running {
+	animation:bear-run-in 4.5s linear 0.7s forwards, bear-running 800ms steps(8) 0s infinite;
+}
+.bd.leave .bear {
+	animation: bear-leave 0.5s linear 0s ,bear-running 800ms steps(8) 0s infinite;
+}
+.bd .auroras {
+	left: 50%;
+	margin-left: -27.34375rem;
+	width: 54.6875rem;
+	height: 30rem;
+	opacity: 0;
+	z-index: 1;
+}
+.bd.fp-completely .auroras {
+	opacity: 1;
+	transition: all 0.7s linear 1.0s;
+}
+.bd.leave .auroras {
+	opacity: 0;
+	transition: all 0.2s linear ;
+}
+.bd .aurora {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+}
+.bd .auroras-1 {
+	background: url(../images/bg-aurora-1-322b435.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 0.2s infinite ;
+}
+.bd .auroras-2 {
+	background: url(../images/bg-aurora-2-9872721.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 0.7s infinite ;
+}
+.bd .auroras-3 {
+	background: url(../images/bg-aurora-3-96add9f.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 1.2s infinite ;
+}
+.bd .auroras-4 {
+	background: url(../images/bg-aurora-4-131b685.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 1.7s infinite ;
+}
+.bd .auroras-5 {
+	background: url(../images/bg-aurora-5-3514cd0.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 2.2s infinite ;
+}
+.bd .auroras-6 {
+	background: url(../images/bg-aurora-4-131b685.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 2.7s infinite ;
+}
+.bd .auroras-7 {
+	background: url(../images/bg-aurora-3-96add9f.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 3.2s infinite ;
+}
+.bd .auroras-8 {
+	background: url(../images/bg-aurora-2-9872721.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 3.7s infinite ;
+}
+.bd .auroras-9 {
+	background: url(../images/bg-aurora-1-322b435.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 4.2s infinite ;
+}
+.bd .auroras-10 {
+	background: url(../images/bg-aurora-2-9872721.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 4.7s infinite ;
+}
+.bd .auroras-11 {
+	background: url(../images/bg-aurora-3-96add9f.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 5.2s infinite ;
+}
+.bd .auroras-12 {
+	background: url(../images/bg-aurora-4-131b685.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 5.7s infinite ;
+}
+.bd .auroras-13 {
+	background: url(../images/bg-aurora-5-3514cd0.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 6.2s infinite ;
+}
+.bd .auroras-14 {
+	background: url(../images/bg-aurora-1-322b435.png) no-repeat ;
+	background-size: 100% auto;
+	transform: translate3d(0,0,0);
+	animation: aurora-moving 7s linear 6.7s infinite ;
+}
+
+.bd .scenes {
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	z-index: 1;
+}
+.bd .scenes .scene-1 {
+	left: 50%;
+	top: 50%;
+	margin: -12em 0 0 -8em;
+	width: 16em;
+	/*height: 14em;*/
+	perspective: 37.5em;
+}
+.bd .scene-1 .scene-1-icon{
+    position: relative;
+	margin: 0 auto 1em;
+    width: 6.25em;
+    height: 6.25em;
+    opacity: 0;
+    transform: translateY(60%);
+}
+.bd.active .scene-1 .scene-1-icon {
+	animation: showtotop 0.3s ease-in 1.2s 1 normal forwards;
+}
+.bd.leave .scene-1 .scene-1-icon {
+	animation: hidetobottom 0.4s ease-in 0s 1 normal forwards;
+}
+.bd .scene-1 .scene-1-icon-content {
+	width: 100%;
+	height: 100%;
+	/*background: url(../images/bg-scene-1-logo-fix-e82d76f.png);*/
+	background: url(../images/bg-scene-1-logo-long-698f71c.png) no-repeat 0 0; 
+	background-size: 150em 6.25em;;
+}
+.bd.active .scene-1 .scene-1-icon-content {
+	animation: run-reverse 1.6s step-start 2.2s 1 normal forwards;
+}
+
+.bd .scene-1 .scene-1-icon-front,
+.bd .scene-1 .scene-1-icon-back {
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+}
+.bd .scene-1 .scene-1-word {
+	margin-left: 1.59375em;
+	margin-bottom: 0.6875em;
+	width: 13.125em;
+	height: 4.375em;
+	background: url(../images/bg-scene-1-title-9f0450d.png);
+	background-size: 100% 100%;
+	opacity: 0;
+	transform: translateY(60%);
+}
+.bd.active .scene-1 .scene-1-word {
+	animation: showtotop 0.4s ease-in 1.25s 1 normal forwards;
+}
+.bd.leave .scene-1 .scene-1-word {
+	animation: hidetobottom 0.3s ease-in 0s 1 normal forwards;
+}
+
+.bd .download-now {
+	left: 50%;
+	top: 50%;
+	margin: 2.75em 0 0 -120px;
+	width: 240px;
+	/*height: ;*/
+	z-index: 2;
+	opacity: 0;
+	transform: translateZ(1000px);
+}
+.bd .download-now a {
+	display: block;
+    width: 7.5em;
+    height: 2.1875em;
+    margin: 0 auto 0.375em;
+    overflow: hidden;
+    text-indent: -999px;
+    background: url("//liulanqi.baidu.com/theme/images/bg-button-download-1d436a6.png") no-repeat;
+    background-size: 100% 100%;
+}
+.bd.active .download-now {
+	animation: fromZ 1s ease-in-out 2.5s 1 forwards;
+} 
+.bd.leave .download-now {
+	animation: goZ 1s ease-in-out 0.2s 1 forwards;
+} 
+
+/***********************************************
+ anmimation @keyframes   关键帧动画
+ * */
+
+/*天空星星运动*/
+@keyframes moving {
+	0%{
+		transform: translate3d(0,0,0);
+	}
+	100%{
+		transform: translate3d(-50%,0,0);
+	}
+}
+
+@keyframes mountains-in {
+	from{ 
+		transform: scale(1.5);
+	}
+	to{
+		transform: scale(1);
+	}
+}
+@keyframes mountains-leave {
+	from{ 
+		transform: scale(1);
+		opacity: 1;
+		transform: translate3d(0,0,0);
+	}
+	to{
+		transform: scale(0.2);
+		opacity: 0;
+		bottom: 300px;
+		transform: translate3d(0,300px,300px);
+	}
+}
+@keyframes bear-run-in{
+	from{
+		left:-6.25em;
+	}
+	to{
+		left:50%;
+	}
+}
+@keyframes bear-running{
+	from{
+		
+		background-position: 0 0;
+	}
+	to{
+		
+		background-position: -50em 0;
+	}
+}
+@keyframes bear-leave{
+	from{
+		
+		left:50%;
+	}
+	to{
+		
+		left:100%;
+	}
+}
+@keyframes aurora-moving {
+	0% {
+		opacity: 0;
+		transform: translate3d(0,0,0);
+	}
+	14% {
+		opacity: 1;
+		transform: translate3d(0,0,0);
+	}
+	28% {
+		opacity: 0;
+		transform: translate3d(0,0,0);
+	}
+	100% {
+		opacity: 0;
+		transform: translate3d(0,0,0);
+	}
+}
+@keyframes moveinfromtop {
+	from{
+		transform: translateY(-100%);
+	}
+	to{
+		transform: translate(0);
+	}
+}
+@keyframes movetotop {
+	from{
+		transform: translateY(0);
+	}
+	to{
+		transform: translate(-100%);
+	}
+}
+@keyframes showtotop {
+	from{
+	opacity: 0;
+	transform: translateY(60%);
+    /*transition: opacity 1.4s ease-in 2s,transform 1.4s ease-in 2s;*/  
+	}
+	to{
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+@keyframes hidetobottom {
+	from{
+		opacity: 1;
+		transform: translateY(0%);
+	}
+	to{
+		opacity: 0;
+		transform: translateY(60%);
+	}
+}
+@keyframes run-reverse {
+  0% {
+    background-position: 0em 0;
+  }
+  4.3478260869565215% {
+    background-position: -6.25em 0;
+  }
+  8.695652173913043% {
+    background-position: -12.5em 0;
+  }
+  13.043478260869565% {
+    background-position: -18.75em 0;
+  }
+  17.391304347826086% {
+    background-position: -25em 0;
+  }
+  21.73913043478261% {
+    background-position: -31.25em 0;
+  }
+  26.08695652173913% {
+    background-position: -37.5em 0;
+  }
+  30.43478260869565% {
+    background-position: -43.75em 0;
+  }
+  34.78260869565217% {
+    background-position: -50em 0;
+  }
+  39.130434782608695% {
+    background-position: -56.25em 0;
+  }
+  43.47826086956522% {
+    background-position: -62.5em 0;
+  }
+  47.826086956521735% {
+    background-position: -68.75em 0;
+  }
+  52.17391304347826% {
+    background-position: -75em 0;
+  }
+  56.52173913043478% {
+    background-position: -81.25em 0;
+  }
+  60.8695652173913% {
+    background-position: -87.5em 0;
+  }
+  65.21739130434783% {
+    background-position: -93.75em 0;
+  }
+  69.56521739130434% {
+    background-position: -100em 0;
+  }
+  73.91304347826086% {
+    background-position: -106.25em 0;
+  }
+  78.26086956521739% {
+    background-position: -112.5em 0;
+  }
+  82.6086956521739% {
+    background-position: -118.75em 0;
+  }
+  86.95652173913044% {
+    background-position: -125em 0;
+  }
+  91.30434782608695% {
+    background-position: -131.25em 0;
+  }
+  95.65217391304347% {
+    background-position: -137.5em 0;
+  }
+  100% {
+    background-position: -143.75em 0;
+  }
+}
+@keyframes fromZ{
+	from{
+		opacity: 0;
+		transform: translateZ(1000PX) scale(0.2);
+	}
+	to{
+		opacity: 1;
+		transform: translateZ(0PX) scale(1);
+	}
+}
+@keyframes goZ{
+	from{
+		opacity: 1;
+		transform: translateZ(1000PX) scale(1);
+	}
+	to{
+		opacity: 0;
+		transform: translateZ(0PX) scale(0.2);
+	}
+}

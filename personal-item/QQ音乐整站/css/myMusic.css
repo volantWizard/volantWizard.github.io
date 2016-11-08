@@ -1,0 +1,102 @@
+#myMusic #l-n-s {
+	position: relative;
+	height: 137px;
+	border-bottom: none;
+}
+#l-n-s .logo a {
+	margin: 17px 0 7px 0;
+}
+#l-n-s .topnav {
+	position: absolute;
+	right: 5px;
+	top: 79px;
+	line-height: 12px;
+}
+#l-n-s .topnav a {
+	color: #666;
+}
+#l-n-s .topnav span {
+	margin: 0 3px 0 7px;
+}
+#main>a {
+	float: left;
+}
+#main>a img {
+	width: 518px;
+	height: 310px;
+}
+#main .login {
+	position: relative;
+	float: right;
+	margin-right: 2px;
+	width: 418px;
+	height: 305px;
+	border: 2px solid #eeeeee;
+}
+.login h2 {
+	font-size: 22px;
+	line-height: 50px;
+	text-indent: 20px;
+	/*font-family: arial;*/
+}
+.login>a {
+	position: absolute;
+	top: 0;
+	right: 6px;
+}
+.login>a img {
+	width: 55px;
+	height: 70px;
+}
+.input {
+	position: absolute;
+	left: 74px;
+	top: 88px;
+	width: 272px;
+}
+.input input {
+	margin-bottom: 9px;
+	width: 272px;
+	height: 46px;
+	border: none;
+	outline: none;
+	background: url(../img/icon_3.png) no-repeat 0 1px;
+	text-indent: 11px;
+	font-size: 16px;
+}
+.input input:focus {
+	background: url(../img/icon_3.png) no-repeat 0 -43px;
+}
+.input input[type=submit] {
+	margin: 2px 0 0 -1px;
+	width: 114px;
+	height: 37px;
+	font: bold 16px/37px "arial, helvetica, sans-serif","宋体";
+	color: #FFFFFF;
+	text-align: center;
+	text-indent: 0;
+	background-position: 0 -88px;
+}
+.input input[type=submit]:focus {
+	background-position: -116px -88px;
+}
+#main .subNav {
+	position: absolute;
+	bottom: 0;
+	right: 10px;
+	line-height: 32px;
+}
+#main .subNav a {
+	
+	color: #666666;
+}
+#main .subNav span {
+	margin: 0 8px 0 9px;
+	color: #c5c5d5;
+}
+#myMusic #footer {
+	margin: 94px 0 10px 0;
+}
+#myMusic a {
+	background: none;
+}

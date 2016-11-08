@@ -1,0 +1,127 @@
+/*清除默认样式*/
+html {
+	height: 100%;
+}
+body {
+	position: relative;
+	margin: 0;
+	font-family: .2rem "arial, helvetica, sans-serif";
+	height: 100%;
+	overflow: hidden;
+}
+p,
+dd,
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+}
+dl,
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	
+}
+a,
+input,
+button {
+	-webkit-tap-highlight-color: rgba(0 0 0 0);
+}
+input,
+button {
+	-webkit-appearance: none;
+}
+img {
+	vertical-align: top;
+}
+.clearFix:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+/*结束*/
+
+.rob,
+.fashion,
+.life,
+.trend,
+.brand,
+.internation,
+.sell,
+.hotTrade,
+.flagship,
+.market,
+.guess  {
+	font-size: 0;
+	text-align: center;
+}
+/*title 公共设置*/
+.rob em ,
+.rob span ,
+.rob strong,
+.rob h2,
+.rob a,
+.fashion em ,
+.fashion span ,
+.fashion strong,
+.fashion h2,
+.fashion a,
+.life em ,
+.life span ,
+.life strong,
+.life h2,
+.life a ,
+.trend em ,
+.trend span ,
+.trend strong,
+.trend h2,
+.trend a,
+.brand em ,
+.brand span ,
+.brand strong,
+.brand h2,
+.brand a,
+.internation em ,
+.internation span ,
+.internation strong,
+.internation h2,
+.internation a ,
+em ,
+span ,
+strong,
+h2,
+a  
+{
+	display: inline-block;
+	vertical-align: top;	
+}
+.title {
+	/*margin: .8rem .5rem 0;*/
+	height: 1.55rem;
+	background: #f0f0f0;
+}
+.title em {
+	/*margin: .76667rem .5rem 0;*/
+	margin: .8rem .5rem 0;
+	width: 1.7rem;
+	height: .05rem;
+	/*background: #f6b7b7;*/
+}
+.title span {
+	margin: .416667rem .3333rem 0 0;
+	width: .76667rem;
+	height: .76667rem;
+	background: url(../img/icon-sprite.png) no-repeat ;
+	background-size: 10rem 10rem;
+}
+.title h2 {
+	margin: .5rem .033333rem 0 0;
+	font: .65rem/1 "arial, helvetica, sans-serif";
+	/*color: #ff2e2e;*/
+}

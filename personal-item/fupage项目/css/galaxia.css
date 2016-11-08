@@ -1,0 +1,214 @@
+.galaxia {
+	position: relative;
+	left: 0;
+	top: 0;
+	height: 100%;
+	width: 100%;
+	background: #151416;
+}
+.container-3d {
+	width: 100%;
+	height: 100%;
+}
+.galaxia .bg-space  {
+	position: absolute;
+    width: 3840px;
+    height: 100%;
+    z-index: 0;
+    background: url(../images/bg-space-6e69cd1.png) repeat-x;
+    transform: translate3d(0,0,0);
+	animation: moving 400s linear 0.8s infinite normal none;
+}
+@keyframes moving {
+	0%{
+		transform: translate3d(0,0,0);
+	}
+	100%{
+		transform: translate3d(-50%,0,0);
+	}
+}
+#canvas {
+	
+	
+}
+#face {
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 200px;
+	height: 200px;
+}
+.galaxia span {
+	display: none;
+	position: absolute;
+	left: 50%;
+	bottom: 4rem;
+	display: inline-block;
+	margin-left: -0.75rem;
+	width: 1.5rem;
+	height: 1.5rem;
+	line-height: 30px;
+	text-align: center;
+	border-left: 2px solid #fff;
+	border-bottom: 2px solid #fff;
+	color: white;
+	opacity: 0;
+	z-index: 3;
+	transform: rotateZ(-45deg);
+	cursor: pointer;
+}
+.galaxia .world {
+	display: none;
+	width: 100px;
+	height: 100px;
+}
+.galaxia .css3d {
+	width: 100%;
+	height: 100%;
+}
+.galaxia .css3d .world-label {
+	display: none;
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	opacity: 0;
+	cursor: pointer;
+	transition: opacity 0s ease;
+	animation: runLtoR 2s steps(5) infinite; 
+}
+.galaxia .css3d .world-label a{
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	opacity: 0;
+}
+/*在前面添加伪类文字*/
+.galaxia .css3d .world-label:before {
+	content: "";
+    width: 100px;
+    height: 50px;
+    opacity: 0;
+   	font: 0.75rem/1.5  "微软雅黑";
+   	color: #FFFFFF;
+   	text-align: center;
+    position: absolute;
+    left: 0;
+    top: -20px;
+    transition: opacity .3s ease;
+}
+.galaxia .css3d .world-label:nth-of-type(1):before {
+	content: "阿里巴巴";
+	color: ;
+}
+.galaxia .css3d .world-label:nth-of-type(2):before {
+	content: "腾讯";
+}
+.galaxia .css3d .world-label:nth-of-type(3):before {
+	content: "百度";
+}
+.galaxia .css3d .world-label:nth-of-type(4):before {
+	content: "京东";
+}
+.galaxia .css3d .world-label:nth-of-type(5):before {
+	content: "奇虎360";
+}
+.galaxia .css3d .world-label:nth-of-type(6):before {
+	content: "搜狐";
+}
+.galaxia .css3d .world-label:nth-of-type(7):before {
+	content: "网易";
+}
+.galaxia .css3d .world-label:nth-of-type(8):before {
+	content: "新浪";
+}
+.galaxia .css3d .world-label.is-visible:before {
+	opacity: 1;
+}
+/*在后面添加竖条*/
+.galaxia .css3d .world-label:after {
+	content: " ";
+    width: 1px;
+    height: 0;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 0px;
+    margin-top: 23%;
+    transition: height .5s ease,margin-top .5s ease;
+}
+.galaxia .css3d .world-label.is-visible:after {
+	height: 30%;
+	margin-top: 0%;
+}
+
+
+
+.galaxia .css3d .world-label.is-visible {
+	opacity: 1;
+}
+.galaxia .css3d .world-label:hover {
+	opacity: 1;
+}
+.galaxia .css3d .world-label:hover:after {
+	height: 30%;
+	margin-top: 0%;
+}
+.galaxia .css3d .world-label:hover:before  {
+	opacity: 1;
+}
+/*各.world-label的定位这里不给出，在js内计算定位*/
+.galaxia .css3d .world-label-1 {
+	background: url(../images/galaxia-diy.png) no-repeat left center;
+	background-size: cover;
+}
+.galaxia .css3d .world-label-2 {
+	background: url(../images/galaxia-election.png) no-repeat left center;
+	background-size: cover;
+}
+.galaxia .css3d .world-label-3 {
+	background: url(../images/galaxia-oscar.png) no-repeat left center;
+	background-size: cover;
+}
+.galaxia .css3d .world-label-4 {
+	background: url(../images/galaxia-rave.png) no-repeat left center;
+	background-size: cover;
+}
+.galaxia .css3d .world-label-5 {
+	background: url(../images/galaxia-singles.png) no-repeat left center;
+	background-size: cover;
+}
+.galaxia .css3d .world-label-6 {
+	background: url(../images/galaxia-smith.png) no-repeat left center;
+	background-size: cover;
+}
+.galaxia .css3d .world-label-7 {
+	background: url(../images/galaxia-snowboarding.png) no-repeat left center;
+	background-size: cover;
+}
+.galaxia .css3d .world-label-8 {
+	background: url(../images/galaxia-street.png) no-repeat left center;
+	background-size: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes runLtoR{
+	from{
+		background-position: left center;
+	}
+	to{
+		background-position: -500px center;
+	}
+}

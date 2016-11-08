@@ -1,0 +1,67 @@
+/*
+ * reset default style 
+ * */
+html {
+	font-size: 18px;
+}
+body {
+	margin: 0;
+	font-size: 100%;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+a {
+	text-decoration: none;
+	outline: none;
+}
+img {
+	border: none;
+	vertical-align: top;
+}
+
+
+/*
+ comment style
+ * */
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.pr {
+	position: relative;
+}
+.pa  {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.clearFix {
+	content: '';
+	display: block;
+	clear: both;
+}
+.clear {
+	zoom: 1;
+}
+
+/*
+ * icon-sprit-----------
+ * */
+.icon-sprite {
+	background-image: url(../images/home_z-a1d7803.png);
+}
+
+/*
+ 
+ * index css
+ * */
