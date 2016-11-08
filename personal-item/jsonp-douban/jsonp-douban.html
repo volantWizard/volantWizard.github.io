@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>书籍搜索-搜索</title>
+	<style>
+	body{font-family: '宋体';}
+	input,ul,h2,p{margin:0;padding:0;}
+	img{border:none;vertical-align: top;}
+	a{text-decoration: none;color:#333;}
+	.wrap{width:960px;margin:0 auto;}
+	.text{width:300px;height:34px;border:1px solid #7c1;margin: 30px 10px 30px 50px;text-indent:5px;color:#ccc;font:14px/34px "宋体";}
+	.btn{width:100px;height:30px;padding:3px;border:1px solid #333;}
+	#detail{font:14px/20px "宋体";color:#333;text-indent: 20px;}
+	#list{padding-left:10px;}
+	.book{height:180px;padding:10px 20px;border-bottom: 1px solid #ccc;clear:both;}
+	.book h2{height:30px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;font:20px/30px "宋体";color:#333;margin-bottom:5px;}
+	.bookInf{zoom:1;padding-top:10px;}
+	.bookInf:after{content:"";display:block;clear:both;}
+	.pic{float:left;width:120px;height:120px;margin-right: 20px;}
+	.pic img{width:100px;height:120px;}
+	.inf{float:left;width:780px;}
+	.inf p{font-size:12px;line-height: 20px;color:#555;}
+	.inf .summary{height:110px;margin-top:5px;overflow:auto;font-size: 12px;line-height: 20px;text-indent: 2em;color:#999;}
+
+	#page{margin:10px auto;}
+	#page a{display:inline-block;width:38px;padding:5px 0;height:26px;margin:0 8px;border:1px solid #999;font:bold 14px/26px "宋体";color:#000;text-align: center;background:#f1f1f1;}
+	#page .current{background:#F90;}
+	#page .pageF,#page .pageL{width:60px;}
+	
+	</style>
+	<script src="./js/template-native.js"></script>
+	<script type="text/html" id="pageTemp">
+		<p id="page" class="wrap">
+			<a href="" class="pageF">上一页</a>
+				<%for(var i=0;i<pagesFn(total);i++){%>
+					<a href="javascript:;" class="pageF"><%=i+1%></a>
+				<%}%>
+			<a href="" class="pageF">下一页</a> 
+		</p>
+	</script>
+	<script type="text/html" id="temp">
+		<% var books = books %>
+		<div id="list" class="wrap">
+			<%for( var i = 0; i < books.length; i++ ){%>
+					
+				<div class="book">
+					<h2>
+						<a href="<%=books[i].alt%>"><%=books[i].title%>
+						</a>
+					</h2>
+					<div class="bookInf">
+						<div class="pic">
+							<a href="content.html?id=2228378">
+								<img src="<%=books[i].image%>">
+							</a>
+							</div>
+						<div class="inf">
+							<p>
+								<% var len = books[i].author.length %>
+								<%for(var j=0;j<len;j++){%>
+									<%=books[i].author[j]%>
+									<%if(j<len-1){%>
+										&
+									<%}%>
+								<%}%>
+							 /<%=books[i].publisher%>  / <%=books[i].pubdate%>\</p><p class="summary"><%=books[i].summary%></p>
+						</div>
+					</div>
+				</div>
+			<%}%>
+		</div>
+		<%include("pageTemp")%>
+	</script>
+	<script>
+		template.helper("pagesFn",function (total){
+			var pageNum = Math.ceil(total/20);
+			if( pageNum > 10 ) pageNum = 10;
+			return pageNum;
+		})
+		function fn(data){
+			console.log( data );
+			var books = data.books;
+
+			var html = template("temp",data);
+
+			content.innerHTML = html;
+
+			//总页数是10页 每一页是20条
+			page.addEventListener("click",function (ev){
+				var target = ev.target;
+				var num = target.innerHTML;  // 1 2 3 4 5
+
+				//点击第一页 总共 20 start 0      (num - 1) * 20
+				//第二页     总共 20 start 20     (num - 1) * 20
+				//第三页     总共 20 start 40     (num - 1) * 20
+
+				var script = document.createElement("script");	
+
+				script.src = 'https://api.douban.com/v2/book/search?count=5&start='+(num - 1) * 20+'&callback=fn&q='+text.value;
+
+				document.body.appendChild(script);
+				document.body.removeChild(script);
+			},false)
+
+		}
+
+		window.onload = function(){
+			
+			btn.onclick = function (){
+				var script = document.createElement("script");	
+
+				script.src = 'https://api.douban.com/v2/book/search?count=5&callback=fn&q='+text.value;
+
+				document.body.appendChild(script);
+				document.body.removeChild(script);
+			};
+
+		};
+
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<input type="text" id="text" class="text" value="JavaScript高级程序设计">
+		<input type="button" id="btn" class="btn" value="搜索相关书籍">
+		<p id="detail"></p>
+	</div>
+	<hr>
+	<div id="content">
+		
+		<!-- <div id="list" class="wrap">
+			小提示：在框中输入要查询的书名，点击搜索按钮就能查询呦~
+			<div class="book"><h2><a href="https://book.douban.com/subject/6526452">Git权威指南</a></h2><div class="bookInf"><div class="pic"> <a href="content.html?id=2228378"><img src="https://img3.doubanio.com/mpic/s6523000.jpg"></a></div><div class="inf"><p>蒋鑫 / 机械工业出版社华章公司 / 2011-6-27</p><p class="summary">《Git权威指南》</p></div></div></div>
+			</div>
+		</div>
+		<p id="page" class="wrap">
+			<a href="" class="pageF">上一页</a>
+			<a href="">1</a>
+			<a href="">2</a>
+			<a href="">3</a>
+			<a href="" class="pageF">下一页</a>
+		</p> -->
+	</div>
+</body>
+</html>
