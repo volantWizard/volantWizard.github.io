@@ -67,14 +67,18 @@
 	        			$('.card').removeClass('cardmove')
 	        		case 2:
 	        			$('.bd').toggleClass('leave');
+	        			ctx.clearRect(0,0,width,height);
 	        			break;
 	        		case 3:
 	        			//清画布，停止定时器，停动画
-	        			ctx.clearRect(0,0,width,height);
 	        			clearInterval(timerSphereRotate);
+	        			
+	        			clearInterval(timerFace);
+	        			clearInterval(timerToSphere);
+	        			
 	        			clearInterval(timerStarShow);
-	        			timerSphereRotate = null;
-	        			timerStarShow = null;
+	        			timerSphereRotate = timerFace =timerToSphere=timerStarShow= null;
+	        			ctx.clearRect(0,0,width,height);
 						//当离开此页的时候，把star的初始位置再改回来，不然下次从新来过的时候，就直接再终点了！
 						arrStar.forEach(function (item){
 						    item.x =  width/5;
@@ -100,8 +104,21 @@
 					$('.bd').removeClass('leave');
 				}
 				if (index == 3 ) {
+					
+					//清画布，停止定时器，停动画
+	        			clearInterval(timerSphereRotate);
+	        			
+	        			clearInterval(timerFace);
+	        			clearInterval(timerToSphere);
+	        			
+	        			clearInterval(timerStarShow);
+	        			timerSphereRotate = timerFace =timerToSphere=timerStarShow= null;
+					
+	        			ctx.clearRect(0,0,width,height);
 					//用延迟定时器做加载
 					//当脸图片加载完后，才能获取图像的像素信息，
+					
+					
 					setTimeout(function (){
 				    	//定义图片出来的初始位置
 					  	var initX = targetX;
@@ -129,10 +146,6 @@
 						        //随机把像素点提取出来，length属性就有了，并获取3d球的目标点位置信息
 						        imageInfo();
 						        
-//						        //人像出来后，动画点击按钮可以出来了
-//						        $('span').css('display','block').animate({
-//						        	'opacity':1
-//						        })
 						        //如果face运动完后，就可以自动爆炸为3d球
 						        setTimeout(autoToRotateSphere,0);
 					    	}
@@ -492,67 +505,8 @@
 	    //添加类.is-visible的定时器
 	    var timerStarShow = null ;
 	    
-	    $('span').click(function (){
-	    	//点过后就消失
-	    	$(this).css({
-	    		'display':'none',
-	    		'opacity':0
-	    	})
-	    	//如果球还在转，就不允许点
-	    	if (timerToSphere || timerStarShow) {
-	    		return;
-	    	}
-	    	//如果face出来后，点击就有效，可以执行下一步动画了
-	    	if (!timerFace) {
-	    		timerToSphere = setInterval(function (){
-	    			//清除画布
-					ctx.clearRect(0, 0, width, height); 
-	    		    toSphere();
-	    		    //画8个星球球
-	    		    toStar();
-	    		    //判断形成3d星球，停止timerToSphere定时器
-	    		    if (Math.abs(colorPointAll[1].x - colorPointAll[1].goX)===0 && Math.abs(colorPointAll[1].y - colorPointAll[1].goY)==0) {
-	    		    	if (Math.abs(colorPointAll[allPointLen-1].x - colorPointAll[allPointLen-1].goX)===0 && Math.abs(colorPointAll[allPointLen-1].y - colorPointAll[allPointLen-1].goY)==0) {
-		    		    	clearInterval(timerToSphere);
-		    		    	timerToSphere = null;
-		    		    	
-		    		    	//当到达3d星球目标后，上一个定时器停止时，执行下面两个定时器
-					    	if (!timerToSphere ) {
-					    		timerSphereRotate = setInterval(function (){
-									ctx.clearRect(0, 0, width, height); 
-					    		    render();
-					    		},200);
-					    		
-					    		//把star变为display:block;
-					    		$('.world-label').css('display','block');
-					    		//开一个新的定时器，用来每隔2s给8个行星显示背景
-					    		timerStarShow = setInterval(function (){
-					    		    //全部清空class = is-visible
-					    		    $('.world-label').removeClass('is-visible');
-					    			setTimeout(function (){
-						    		    //随机给8个world-label中的一个添加 .is-visible
-						    		    var index1 = Math.floor(Math.random()*8);
-						    		    $('.world-label').eq(index1).addClass('is-visible');
-					    			},500);
-					    		},2500);
-					    	}
-	    		    	}
-	    		    }
-	    		},20)
-	    	}
-	    });
-	    
 	    function autoToRotateSphere(){
 	        
-//	    	//点过后就消失
-//	    	$(this).css({
-//	    		'display':'none',
-//	    		'opacity':0
-//	    	})
-//	    	//如果球还在转，就不允许点
-//	    	if (timerToSphere || timerStarShow) {
-//	    		return;
-//	    	}
 	    	//如果face出来后，点击就有效，可以执行下一步动画了
 	    	if (!timerFace) {
 	    		timerToSphere = setInterval(function (){
@@ -593,6 +547,21 @@
 	    	}
 	    }
 	    
+	    $('.world-label').hover(function (){
+	    	clearInterval(timerStarShow);
+	    	$('.world-label').removeClass('is-visible');
+	        $(this).addClass('is-visible');
+	    },function (){
+	        timerStarShow = setInterval(function (){
+    		    //全部清空class = is-visible
+    		    $('.world-label').removeClass('is-visible');
+    			setTimeout(function (){
+	    		    //随机给8个world-label中的一个添加 .is-visible
+	    		    var index1 = Math.floor(Math.random()*8);
+	    		    $('.world-label').eq(index1).addClass('is-visible');
+    			},300);
+    		},1500);
+	    })
 	    
 	    //创建3D球，得到3D球面坐标的集合
 	    function Sphere3D(radius) {
