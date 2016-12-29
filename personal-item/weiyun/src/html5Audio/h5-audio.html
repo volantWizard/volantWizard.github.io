@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/h5-audio.css"/>
+		<script src="../../js/jquery-2.2.4.js"></script>
+	</head>
+	<body>
+			<div id="h5-Audio">
+		    	<div class="wrap">
+		    		<header id="audio-header">
+		    			<h2>DY音乐</h2>
+		    			<div class="song-search">
+		    				<input type="text" placeholder="请搜索喜欢的歌曲" name="song-value" id="song-value" value="" />
+		    				<span class="search-ico"></span>
+		    			</div>
+		    			<div class="closed">
+		    				<span></span>
+		    			</div>
+		    		</header>
+		    		<div id="audio-menu">
+		    			<div class="song-info">
+		    				<table border="" cellspacing="0" cellpadding="">
+		    					<tr class="theader">
+		    						<th class="songname">歌曲</th>
+		    						<th class="artistname">歌手</th>
+		    						<th class="album_title">专辑</th>
+		    						<th class="detime">时长</th>
+		    						<th class="size">大小</th>
+		    					</tr>
+		    					<tbody class="tb">
+		    						
+		    					</tbody>
+		    					
+		    				</table>
+		    			</div>
+		    			<div class="slid-bar">
+		    				<h3>播放列表</h3>
+		    				<ul class="slid-menu">
+		    					<li data-songname = "独家记忆 (Live).mp3">
+		    						独家记忆 (Live)
+		    					</li>
+		    					<li data-songname = "做我老婆好不好.mp3">
+		    						做我老婆好不好
+		    					</li>
+		    				</ul>
+		    				<span class="onoff">
+		    					<i></i>
+		    				</span>
+		    			</div>
+		    			<div class="canvasMove">
+		    				<canvas id="canvas" width="" height=""></canvas>
+		    			</div>
+		    			<div id="lrc-list">
+		    				<!--<ul class="new-header">
+		    					<li >
+		    						<span>歌曲名：</span>
+		    						<strong class="new-song-name">做我老婆好不好</strong>
+		    					</li>
+		    					<li>
+		    						<span>歌手名：</span>
+		    						<strong class="new-autor">徐誉滕</strong>
+		    					</li>
+		    					<li>
+		    						<span>专辑名：</span>
+		    						<strong class="new-al">试音王8号</strong>
+		    					</li>
+		    				</ul>-->
+		    				<div id="gc">	
+								<ul class="new-lrc">
+									
+								</ul>    
+		    				</div>
+						</div>   
+		    		</div>
+		    		<div id="control">
+		    			<div class="play-btn">
+		    				<i class="pre"></i>
+			    			<i class="start"></i>
+			    			<i class="next"></i>
+			    			<span></span>
+		    			</div>
+		    			<div class="image">
+		    				<img src="http://musicdata.baidu.com/data2/pic/30820ef7417ed96fc665f952694454dc/262024822/262024822.jpg"/>
+		    			</div>
+		    			<div class="plan-bar">
+		    				<div class="times">
+		    					<a href="javascript:;" id="simp_btn" class="btn_big_only"></a>
+		    					<span class="current-time">00:00</span>
+		    					<i>/</i>
+		    					<span class="durint-time">00:00</span>
+		    				</div>
+		    				<div class="bar">
+	    						<div class="plan-control">
+		    						<span class="point"></span>
+		    					</div>
+		    					<div>
+		    						
+		    					</div>
+		    				</div>
+		    			</div>
+		    			<div class="sound">
+		    				
+		    				<div class="sound-bar">
+		    					<div class="sound-warp">
+			    					<div class="sound-control">
+			    						<span class="point"></span>
+			    					</div>
+		    					</div>
+		    				</div>
+		    			</div>
+		    			
+		    			<audio id="audio" src="" ></audio>
+		    		</div>
+		    		<div id="song-menu">
+		    			
+		    		</div>
+		    	</div>
+		    </div>
+		<script src="js/lrc.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/h5-audio.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

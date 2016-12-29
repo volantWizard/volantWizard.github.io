@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我们i音乐</title>
+		<!--格式检测-->
+		<meta name="format-detection" content="telephone=no,email=no,address=no"/>
+		<!--删除默认的苹果工具栏和菜单栏-->
+		<meta name="apple-mobile-web-app-capable" content="yes"/>
+		<!--控制状态栏显示样式-->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+		<!-- meta是html中的元标签，它包含了对应html的相关信息，客户端浏览器或服务器端的程序会根据这些信息进行处理。
+    此句的元信息分别是：
+    http类型：网页用来表现内容的；
+    content（内容类型）：指定网页的格式是文本的；
+    charset（编码）：指定网页的编码是utf-8。-->
+		<meta name="" http-equiv="content-type" content="text/html"/>
+    	<link rel="stylesheet" type="text/css" href="src/css/imusic.css"/>
+		<!--<script src="src/js/moudlejs/full-rem.js" type="text/javascript" charset="utf-8"></script>-->
+	</head>
+	<body>
+		<div class="main">
+			<div class="main" id="total">
+				<img src="images/bg.jpg"/>
+				<div id="index" class="main">
+					<img src="images/line_text_bg.png" class="line_text_bg"/>
+					<img src="images/line_text1.png" class="line_text1" id="line_text1"/>
+					<img id="line_text2" src="images/line_text2.png" class="line_text2">
+                	<img id="line_text3" src="images/line_text3.png" class="line_text3">
+                	
+                	<img src="images/index_1.png" class="index_1">
+	                <img src="images/index_2.png" class="index_2">
+	                <img src="images/index_3.png" class="index_3">
+	                <img src="images/index_4.png" class="index_4">
+	                <img src="images/index_5.png" class="index_5">
+	                <img src="images/index_6.png" class="index_6">
+	                <img src="images/index_7.png" class="index_7">
+	                <img src="images/index_8.png" class="index_8">
+	                <img src="images/index_9.png" class="index_9">
+	                <img src="images/index_10.png" class="index_10">
+	                <img src="images/index_11.png" class="index_11">
+	                <img src="images/index_12.png" class="index_12">
+	                <img src="images/index_13.png" class="index_13">
+	                <img src="images/index_14.png" class="index_14">     
+				</div>
+				<div id="ts" class="main hide obj_fadeOut">
+					<div class="main" style="background:#000;opacity:0.7;"></div>
+                	<img src="images/360.png" class="ts360">
+				</div>
+			</div>
+		</div>
+		<audio loop="loop" id="music1" autoplay="autoplay">
+			<source src="src/mp3/0.mp3"></source>
+		</audio>
+		<audio id="music2" loop="loop" preload="load" >
+	        <source src="src/mp3/2.mp3" type="audio/mpeg" />
+	    </audio>
+		<audio id="music3" loop="loop" preload="load" >
+	        <source src="src/mp3/3.mp3" type="audio/mpeg" />
+	    </audio>
+	
+	    <audio id="music4" loop="loop" preload="load" >
+	        <source src="src/mp3/1.mp3" type="audio/mpeg" />
+	    </audio>
+	
+	    <audio id="music5" loop="loop" preload="load" >
+	        <source src="src/mp3/4.mp3" type="audio/mpeg" />
+	    </audio>
+	    <!--加载seajs-->
+		<script src="src/js/seajs/sea.js" id="seajsnode" type="text/javascript" charset="utf-8"></script>
+		
+		<script type="text/javascript">
+			//seajs的配置
+			seajs.config({
+//				//配置基础路径
+				base:'./src/js',
+				//path-当目录比较深，或需要跨目录调用模块时，可以使用 paths 来简化书写。
+				//paths 配置可以结合 alias 配置一起使用，让模块引用非常方便。
+				paths:{
+					'modul':'module',
+					'main':'main'
+				},
+//				//当模块标识很长时，可以使用 alias 来简化。
+				alias:{
+					'zepto':'module/zepto.js'
+				},
+				//使用 preload 配置项，可以在普通模块加载前，提前加载并初始化好指定模块。
+				preload:['zepto','main/full-view']
+			});
+			//加载入口模块,都会直接运行模块内的函数，所以不写回掉
+			seajs.use(['main/full-view','main/main']);	
+		</script>
+	</body>
+</html>

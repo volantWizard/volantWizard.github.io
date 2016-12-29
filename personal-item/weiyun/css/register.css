@@ -1,0 +1,294 @@
+/*~~~~~~~~~~~~默认样式清楚~~~~~~~~~~~~~~~*/
+body {
+	margin:  0;
+	font: 12px "微软雅黑";
+}
+h2 {
+	margin: 0;
+	/*padding: 0;*/
+}
+a {
+	text-decoration: none;
+}
+input {
+	border: none;
+	outline: none;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+i {
+	font-style: normal;
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+table {
+	border-collapse: collapse;
+	border: none;
+	border-color: transparent;
+}
+
+.clearFix:after {
+	content: '';
+	display: block;
+	clear: both;
+}
+
+/*~~~~~~~~~~~~~~~清楚结束~~~~~~~~~*/
+
+#register {
+	/*display: none;*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 470px;
+	transform: rotateY(-180deg);
+    /*transition: all 0.80s ease-in-out 0s;*/
+    background: #FFFFFF;
+    z-index: 2;
+}
+/*#register.ry-0 {
+	transform: rotateY(0);
+}*/
+#register h2 {
+	line-height: 54px;
+    font-size: 20px;
+    text-indent: 165px;
+    font-family: "arial, helvetica, sans-serif";
+}
+.box {
+	
+}
+
+.item,#ipt_box,.info,.outer {
+	float: left;
+	/*height: 30px;*/
+}
+.item {
+	padding-right: 10px;
+	width: 70px;
+	font: 14px/36px "arial, helvetica, sans-serif";
+	text-align: right;
+}
+#ipt_box {
+	padding-right: 5px;
+	padding-bottom: 15px;
+}
+#ipt_box .bg-text  {
+	border: 1px solid #729CB7;
+	border-radius: 3px;
+    height: 35px;
+    width: 225px;
+    /*background: url(//6.url.cn/zc/chs/img/ipt.png?v=10091) no-repeat;*/
+}
+#ipt_box .bg-text.bg-focus  {
+	border: 1px solid blue;
+	border-radius: 3px;
+}
+#ipt_box .error {
+	border: 1px solid #FF0000;
+}
+#ipt_box  input.new_txt {
+	padding: 8px;
+	height: 18px;
+	width:182px;
+	font: 14px/18px "arial, helvetica, sans-serif";
+}
+.box .info {
+	display: none;
+	position: absolute;
+    left: 310px;
+	/*width: 180px;*/
+	height: 40px;
+	font: 14px/36px "arial, helvetica, sans-serif";
+}
+
+.pwd-info #pwd_result.hide {
+	display: none;
+}
+.box .info td {
+
+	height: 35px;
+	vertical-align: middle;
+	font: 12px "arial, helvetica, sans-serif";
+}
+#password_pic {
+	float: left;
+    width: 63px;
+    height: 15px;
+    padding-left: 70px;
+    background: url(../img/pwd_sprite.png) no-repeat 1000px 0;
+}
+
+#password_pic.rankMiddle{
+	background-position: 0 -142px;
+    color: #61d01c;
+}
+#password_pic.rankLow {
+    background-position: 0 -100px;
+    color: #ff9c3a;
+}
+#password_pic.rankHigh {
+    background-position:0 -190px;
+    color:#61d01c
+}
+.box .info td.error {
+	padding-left: 16px;
+	color: #f66;
+    background: url(../img/pwd_sprite.png) 0 -342px no-repeat;
+}
+.box .info td.ok {
+	color: #48A309;
+    background: url(../img/ok.png) 0 11px no-repeat;
+    padding-left: 14px;
+}
+.box .info .pwd_tips {
+	width: 158px;
+    height: 71px;
+    padding-top: 6px;
+    position: absolute;
+    top: -18px;
+    background: url(../img/pwd_sprite.png) no-repeat;
+}
+.pwd_tips div {
+	height: 22px;
+    line-height: 22px;
+    margin-left: 15px;
+    padding-left: 18px;
+    font-size: 12px;
+    background: url(../img/pwd_sprite.png) 0 -215px no-repeat;
+}
+.pwd_tips .yes {
+    background: url(../img/pwd_sprite.png) 0 -247px no-repeat;
+}
+.pwd_tips .no {
+	color: #F66;
+    background: url(../img/pwd_sprite.png) 0 -281px no-repeat;
+}
+#pwd-tips.hide {
+	display: none;
+}
+.box .pwd-info td {
+	height: 15px;
+	width: 160px;
+    vertical-align: middle;
+    font: 12px "arial, helvetica, sans-serif";
+}
+.box .pwd-info #password_again_info {
+	height: 35px;
+	width: 160px;
+    vertical-align: middle;
+    font: 12px "arial, helvetica, sans-serif";
+}
+
+
+#mail.bg-text {
+	float: left;
+	margin-right: 5px;
+	width: 128px;
+}
+#ipt_box  input.mail_txt {
+	float: left;
+	width: 120px;
+	padding-right: 0;
+}
+.outer {
+	position: relative;
+	float: left;
+	width: 90px;
+	border: 1px solid #729CB7;
+    border-radius: 3px;
+    height: 35px;
+    text-align: center;
+}
+.outer #selfType {
+	font: 14px/35px "arial, helvetica, sans-serif";
+}
+.outer #selfType:after {
+	content: '';
+	/*display: block;*/
+	position: relative;
+	top: 10px;
+	left: 5px;
+	border-top: 4px solid #000000;
+	border-left: 4px solid transparent;
+	border-right: 4px solid transparent;
+}
+.outer ul {
+	position: absolute;
+    top: 35px;
+    left: -10px;
+    background: #F3F9FC;
+    border: 1px solid #57a8e4;
+    width: 97px;
+}
+.outer ul li {
+	text-align: left;
+	cursor: pointer;
+}
+.outer #selfType .icon-jiao {
+	
+}
+.box-5 {
+	padding-bottom: 5px;
+}
+.box-5 label {
+	height: 35px;
+}
+.box-5 #submit_box,
+.box-5 #back_box {
+	float: left;
+	border-radius: 3px;
+}
+
+#submit_box #submit,
+#back_box #back-btn {
+	width: 228px;
+	height: 35px;
+	cursor: pointer;
+	border: 1px solid #009F8A;
+	font: 20px/35px "arial, helvetica, sans-serif";
+	color: #fff;
+	background: #69b946;
+	border-color: transparent;
+}
+#submit_box #submit.disabled {
+	background: #f4f9fd;
+    color: #888;
+    cursor: default;
+    border-color: #d0dae3;
+}
+
+.box-6 {
+	padding-top: 15px;
+}
+.box-6 .item {
+	padding-right: 10px;
+    width: 70px;
+    height: 35px;
+    font: 14px/36px "arial, helvetica, sans-serif";
+    text-align: right;
+}
+.box-6 .agree_box .a_1 {
+    display: block;
+    float: left;
+    line-height: 18px;
+    height: 18px;
+    padding-left: 20px;
+    background: url(../img/ipt.png) -300px -253px no-repeat;
+    cursor: pointer;
+    margin-right: 10px;
+    color: red;
+}
+.box-6 .agree_box .a_1.checked {
+	background: url(../img/ipt.png) -300px -292px no-repeat;
+    color: #000;
+}
+.box-6 .agree_box .a_1.unchecked {
+	background: url(../img/ipt.png) -300px -253px no-repeat;
+    color: grey;
+}

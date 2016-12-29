@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>微云，全能收藏 无处不在 - 官方网站</title>
+<link rel="stylesheet" type="text/css" href="css/login.css"/>
+<link rel="stylesheet" type="text/css" href="css/register.css"/>
+<script src="js/jquery-2.2.4.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/m.touch.js" type="text/javascript" charset="utf-8"></script>
+</head>
+<body>
+	<div id="login-wrap">
+		<div class="wy-header">
+			<div class="wy-mod-nav">
+				<h1>
+					<a href="#">
+						<i class="icon-header-logo"></i>
+					</a>
+				</h1>
+				<ul id="_nav" class="wy-mod-nav-main clearfix">
+					<li data-id = "index">
+						<a href="javascript:;" class="on">首页</a>
+					</li>
+					<li data-id = "download">
+						<!--<a href="http://dldir1.qq.com/weiyun/WeiyunInstall_Beta_1_3.5.0.1783_20160929_181241_r28718.exe" class="">下载</a>-->
+					</li>
+					<li data-id = "login" class="user-login">
+						<a href="javascript:;" class="">登陆</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="wy-content-ul-wrap">
+			<ul class="banner-play wy-content-ul">
+				<li class="wy-content-item">
+					<img class="item-bg" src="img/banner_1.png"/>
+				</li>
+				<li class="wy-content-item">
+					<img class="item-bg" src="img/banner_2.png"/>
+				</li>
+				<li class="wy-content-item">
+					<img class="item-bg" src="img/banner_3.png"/>
+				</li>
+			</ul>
+		</div>
+		<div class="section-wrap">
+		<section id="section">
+			<div id="login">
+				<p class="enter">账号密码登录</p>
+				<p class="warn">推荐使用快速安全登录，防止盗号。</p>
+				<div class="content">
+					<input type="text" class="login-name mark markd" placeholder="支持用户名/邮箱号登录">
+					<input type="password" class="login-parsword mark" placeholder="密码">
+					<input type="button" value="登录" class="btn login-in">
+				</div>
+				
+				<div class="content2">
+					<input type="text" class="mark markz" placeholder="支持用户名/邮箱号找回">
+					<input type="button" value="找回" class="btn btnz">
+					<input type="button" value="返回登陆" class="btn btnf">
+				</div>
+				<div class="options">
+					<span class="dealSelect active"></span>
+					<a href="http://www.weiyun.com/xy.html" class="deal">阅读并接受《微云服务协议》</a>
+					<a href="#" class="forgot">忘了密码？</a><span class="wire"></span>
+					<a href="#" class="enroll">注册新账号</a><span class="wire"></span>
+					<a href="http://support.qq.com/write.shtml?guest=1&fid=713&SSTAG=hailunna" class="idea">意见反馈</a>
+				</div>
+			</div>
+			<div id="register">
+				<h2>注册</h2>
+				<div class="box box-1 clearFix">
+					<label for="" class="item">
+						昵称
+					</label>
+					<div id="ipt_box">
+						<div id="nick_bg" class="bg-text">
+							<input type="text" name="" id="nick" value="" class="new_txt"/>
+						</div>
+					</div>
+					<div class="info">
+						<table border="" cellspacing="" cellpadding="">
+							<tr>
+								<td id="nick_info">请输入昵称</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="box box-2 clearFix">
+					<label for="" class="item">
+						密码
+					</label>
+					<div id="ipt_box">
+						<div id="password_bg" class="bg-text">
+							<input type="password" name="" id="password" value="" class="new_txt"/>
+						</div>
+					</div>
+					<div class="info pwd-info">
+						<div id="pwd-tips" class="pwd_tips">
+							<div class="default" id="pwd_tip1">长度为6-16个字符</div>
+							<div class="default" id="pwd_tip2">不能包含空格</div>
+							<div class="default" id="pwd_tip3">不能是9位以下纯数字</div>
+						</div>
+						<table id="pwd_result" border="" cellspacing="" cellpadding="" class="hide">
+							<tr>
+								<td id="password_pic" class=""></td>
+							</tr>
+							<tr>
+								<td id="password_info" class="password_info"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="box box-3 clearFix">
+					<label for="" class="item">
+						确认密码
+					</label>
+					<div id="ipt_box">
+						<div id="password_again_bg" class="bg-text">
+							<input type="password" name="" id="password-again" value="" class="new_txt"/>
+						</div>
+					</div>
+					<div class="info pwd-info">
+						<table border="" cellspacing="" cellpadding="">
+							<tr>
+								<td id="password_again_info">请再次输入密码</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="box box-5 clearFix">
+					<label for="" class="item"></label>
+					<div id="submit_box">
+						<input type="button" title="立即注册" id="submit" value="立即注册"  class="new_txt"/>
+					</div>
+				</div>
+				<div class="box box-5 clearFix">
+					<label for="" class="item"></label>
+					<div id="back_box">
+						<input type="button" title="返回" id="back-btn" value="返回"  class="new_txt"/>
+					</div>
+				</div>
+				<div class="box box-6 clearFix">
+					<div class="item"></div>
+					<div id="ipt_box">
+						<div class="agree_box">
+							<a class="a_1 checked" id="agree">
+								我已阅读并同意相关服务条款和隐私政策
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		</div>
+		<div class="alert-tip">
+		</div>
+	</div>
+	<script src="js/source.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/login.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/register.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

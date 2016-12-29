@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>腾讯微云</title>
+		<!--引入外部的弹框样式-->
+		<link rel="stylesheet" type="text/css" href="src/dialog/css/demo.css"/>
+		<link rel="stylesheet" type="text/css" href="css/indexWeiyun.css"/>
+		<link rel="stylesheet" type="text/css" href="src/html5Audio/css/h5-audio.css"/>
+		<script src="js/jquery-2.2.4.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="weiyun">
+			<header id="frame_header">
+				<h2 id="logo" class="fl">
+					<a href="javascript:void(0);"></a>
+				</h2>
+				<div id="banner_left" class="fl">
+					<div id="banner_info">
+						<!--<span>微云会员首次开通，低至一元</span>-->
+					</div>
+				</div>
+				<div id="header_right" class="fr">
+					<!--<div id="banner_right" class="fl">
+						<a href="http://www.weiyun.com/vip/weiyun_vip.html" class="member fl pr">
+							<span class="icon"></span>
+							会员中心
+						</a>
+						<a href="javascript:;" class="download fl pr">
+							<span class="icon"></span>
+							下载客户端
+						</a>
+					</div>-->
+					<div id="header_search" class="fl pr">
+						<!--<span class="icon"></span>-->
+						<input type="text" name="search" id="search" value="" placeholder="搜索全部文件"/>
+					</div>
+					<div id="login" class="fl pr">
+						<img src="img/g.jpg" class="fl"/>
+						<div id="user_info">
+							<ul>
+								<li>
+									<span>登录：</span><span class="login-username"></span>
+								</li>
+								<li>
+									<span>已用：</span><span class="login-used"></span>
+								</li>
+								<li>
+									<span class="login-out">退出</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="wy-platform-download">
+						<ul class="wy-platform-wrap">
+							<li class="wy-platform">
+								<a href="http://172.16.6.101/IXCac5c18aac34c5c136975a51d28cbc057/weiyun/WeiyunInstall_Beta_1_3.5.0.1783_20160929_181241_r28718.exe" class="wy-platform-item">
+									<i class="icon icon-android"></i>
+								</a>
+								<span class="wy-platform-txt">Android版</span>
+							</li>
+							<li class="wy-platform">
+								<a href="https://itunes.apple.com/cn/app/id522700349?mt=8&ls=1" class="wy-platform-item">
+									<i class="icon icon-iphone"></i>
+								</a>
+								<span class="wy-platform-txt">iPhone版</span>
+							</li>
+							<li class="wy-platform">
+								<a href="https://itunes.apple.com/cn/app/id608263551?mt=8&ls=1" class="wy-platform-item">
+									<i class="icon icon-ipad"></i>
+								</a>
+								<span class="wy-platform-txt">iPad版</span>
+							</li>
+							<li class="wy-platform">
+								<a href="http://172.16.6.101/IXCac5c18aac34c5c136975a51d28cbc057/weiyun/WeiyunInstall_Beta_1_3.5.0.1783_20160929_181241_r28718.exe" class="wy-platform-item">
+									<i class="icon icon-win"></i>
+								</a>
+								<span class="wy-platform-txt">Windows版</span>
+							</li>
+							<li class="wy-platform">
+								<a href="http://dldir1.qq.com/weiyun/Weiyun_Mac_3.0.1.315.28482.dmg" class="wy-platform-item">
+									<i class="icon icon-mac"></i>
+								</a>
+								<span class="wy-platform-txt">Mac版</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</header>
+			
+			<div id="frame_main">
+				<div id="main" class="fl">
+					<div id="main_content">
+						<div id="main_toobar">
+							<div id="main_toobar_content">
+								
+								<div class="main_toobar_left fl">
+									<!--<a href="javascript:;" class="pr fl">
+										<span class=""></span><i class="">下载</i>
+									</a>-->
+									<!--<a href="javascript:;" class="pr fl">
+										<span></span><i>分享</i>
+									</a>-->
+									<a href="javascript:;" class="move pr fl">
+										<span></span><i>移动到</i>
+									</a>
+									<a href="javascript:;" class="rename pr fl">
+										<span></span><i>重命名</i>
+									</a>
+									<a href="javascript:;" class="delect pr fl">
+										<span></span><i>删除</i>
+									</a>
+									<a href="javascript:;" class="new_construct pr fl">
+										<span></span><i>新建文件夹</i>
+									</a>
+									<a href="javascript:;" class="clear-ecycle pr fl">
+										<span></span><i>清空回收站</i>
+									</a>
+								</div>
+								<div class="main_toobar_right fr">
+									<a href="#" class="view_btn fl" title="查看目录树"></a>
+									<!--<a href="#" class="vm_btn fl pr">
+										<span class="icon"></span>
+									</a>-->
+									<ul>
+										<li></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div id="main_content_construct" class="pr">
+							<div id="tree_menu" class="show fl">
+								<ul class="">
+									<!--<li>
+										<div class="tree_item checked">
+											<a href="" class="link pr">
+												<i class="icon_open"></i>
+												<span class="title">微云</span>
+											</a>
+										</div>
+										<ul>
+											<li>
+												<div class="tree_item " style="padding-left: 28px;">
+													<a href="javascript:;" class="link pr">
+														<i class="icon_open"></i>
+														<span class="title">微云</span>
+													</a>
+												</div>
+											</li>
+											<li>
+												<div class="tree_item" style="padding-left: 28px;">
+													<a href="" class="link pr">
+														<i class="icon_open"></i>
+														<span class="title">微云</span>
+													</a>
+												</div>
+												<ul>
+													<li>
+														
+													</li>
+												</ul>
+											</li>
+										</ul>
+									</li>-->
+								</ul>
+							</div>
+							<div id="tree_content" class="show">
+								<div class="tree_path_nav" class="clearFix">
+									<label class="check_all fl pr" ></label>
+									<div id="tree_main_path" class="fl">
+									</div>
+								</div>
+								<div id="tree_file_cont" class="file-list clearFix">
+									<div class="empty-box">
+								    	<div class="status-inner">
+								    		<i class="icon icon-notrash"></i>
+								    		<h2 class="title">回收站为空</h2>
+								    		<p class="txt"></p>
+								    	</div>
+								    </div>
+								</div>
+							</div>
+						</div>
+						
+						
+					</div>
+					
+					
+					
+					
+					
+					
+				</div>
+				<div id="main_menu" class="fl">
+					<div id="upload_btn">
+						<a href="javascript:void(0);" class="upload fl">
+							<span>+</span>
+							<i>上传</i>
+						</a>
+						<input type="file" name="" id="upload-file" value="" />
+						<div class="upload_box">
+						</div>
+					</div>
+					<div id="main_menu_wrap">
+						<ul class="main_menu_top">
+							<li class="index">
+								<span></span>
+								<i>目录</i>
+							</li>
+							<li class="nearrest">
+								<span></span>
+								<i>最近</i>
+							</li>
+						</ul>
+						<ul class="main_menu_middle">
+							<li class="doc">
+								<span></span>
+								<i>文档</i>
+							</li>
+							<li class="image">
+								<span></span>
+								<i>图片</i>
+							</li>
+							<li class="music">
+								<span></span>
+								<i>音乐</i>
+							</li>
+							<li class="video">
+								<span></span>
+								<i>视频</i>
+							</li>
+							<!--<li class="node">
+								<span></span>
+								<i>笔记</i>
+							</li>-->
+						</ul>
+						<!--<ul class="clipboard">
+							<li>
+								<span></span>
+								<i>剪贴板</i>
+							</li>
+						</ul>-->
+						<ul class="main_menu_foot">
+							<!--<li>
+								<span></span>
+								<i>分享的链接</i>
+							</li>-->
+							<li class="recycle-bin">
+								<span></span>
+								<i>回收站</i>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="preview">
+				<div class="mask"></div>
+				<div class="content">
+					<img src="img/banner_1.png"/>
+				</div>
+				<span class="preview-close">x</span>
+			</div>
+			<ul class="rightMenu rightClick"></ul>
+		</div>
+		<div class="full-tip-box">
+	        <span class="full-tip">
+	            <span class="inner">
+	                <i class="ico"></i>
+	                <span class="text" data-id="label">新建文件夹成功</span>
+	       		</span>
+	        </span>
+	    </div>
+	    
+	    <!--audio部分-->
+    	<div class="audio-mask"></div>
+	    <div id="audio-iframe">
+	    	<div id="h5-Audio">
+		    	<div class="wrap">
+		    		<header id="audio-header">
+		    			<h2>DY音乐</h2>
+		    			<div class="song-search">
+		    				<input type="text" placeholder="请搜索喜欢的歌曲" name="song-value" id="song-value" value="" />
+		    				<span class="search-ico"></span>
+		    			</div>
+		    			<div class="closed">
+		    				<span></span>
+		    			</div>
+		    		</header>
+		    		<div id="audio-menu">
+		    			<div class="song-info">
+		    				<table border="" cellspacing="0" cellpadding="">
+		    					<tr class="theader">
+		    						<th class="songname">歌曲</th>
+		    						<th class="artistname">歌手</th>
+		    						<th class="album_title">专辑</th>
+		    						<th class="detime">时长</th>
+		    						<th class="size">大小</th>
+		    					</tr>
+		    					<tbody class="tb">
+		    						
+		    					</tbody>
+		    					
+		    				</table>
+		    			</div>
+		    			<div class="slid-bar">
+		    				<h3>播放列表</h3>
+		    				<ul class="slid-menu">
+		    					<li data-songname = "做我老婆好不好.mp3">
+		    						做我老婆好不好
+		    					</li>
+		    					<li data-songname = "烟花易冷.mp3">
+		    						烟花易冷
+		    					</li>
+		    					<li></li>
+		    				</ul>
+		    				<span class="onoff">
+		    					<i></i>
+		    				</span>
+		    			</div>
+		    			<div class="canvasMove">
+		    				<canvas id="canvas" width="" height=""></canvas>
+		    			</div>
+		    			<div id="lrc-list">
+		    				<!--<ul class="new-header">
+		    					<li >
+		    						<span>歌曲名：</span>
+		    						<strong class="new-song-name">做我老婆好不好</strong>
+		    					</li>
+		    					<li>
+		    						<span>歌手名：</span>
+		    						<strong class="new-autor">徐誉滕</strong>
+		    					</li>
+		    					<li>
+		    						<span>专辑名：</span>
+		    						<strong class="new-al">试音王8号</strong>
+		    					</li>
+		    				</ul>-->
+		    				<div id="gc">	
+								<ul class="new-lrc">
+									
+								</ul>    
+		    				</div>
+						</div>   
+		    		</div>
+		    		<div id="control">
+		    			<div class="play-btn">
+		    				<i class="pre"></i>
+			    			<i class="start"></i>
+			    			<i class="next"></i>
+			    			<span></span>
+		    			</div>
+		    			<div class="image">
+		    				<img src="http://musicdata.baidu.com/data2/pic/30820ef7417ed96fc665f952694454dc/262024822/262024822.jpg"/>
+		    			</div>
+		    			<div class="plan-bar">
+		    				<div class="times">
+		    					<a href="javascript:;" id="simp_btn" class="btn_big_only"></a>
+		    					<span class="current-time">00:00</span>
+		    					<i>/</i>
+		    					<span class="durint-time">00:00</span>
+		    				</div>
+		    				<div class="bar">
+	    						<div class="plan-control">
+		    						<span class="point"></span>
+		    					</div>
+		    					<div>
+		    					</div>
+		    				</div>
+		    			</div>
+		    			<div class="sound">
+		    				<div class="sound-bar">
+		    					<div class="sound-warp">
+			    					<div class="sound-control">
+			    						<span class="point"></span>
+			    					</div>
+		    					</div>
+		    				</div>
+		    			</div>
+		    			
+		    			<audio id="audio" src="" ></audio>
+		    		</div>
+		    		<div id="song-menu">
+		    			
+		    		</div>
+		    	</div>
+		    </div>
+	    </div>
+	    <!--jieshu-->
+	    
+	    
+	    <!--引入外部的弹框插件-->
+	    <script src="src/dialog/js/dialog.js" type="text/javascript" charset="utf-8"></script>
+		<!--数据部分-->
+		<script src="js/data.js" type="text/javascript" charset="utf-8"></script>
+		<!--数据处理-->
+		<script src="js/datahandle1.js" type="text/javascript" charset="utf-8"></script>
+		<!--工具部分-->
+		<script src="js/tools.js" type="text/javascript" charset="utf-8"></script>
+		<!--逻辑（公共部分）view-->
+		<script src="js/view1.js" type="text/javascript" charset="utf-8"></script>
+		<!--交互部分-->		
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+		<!--audio-->
+		<script src="src/html5Audio/js/lrc.js" type="text/javascript" charset="utf-8"></script>
+		<script src="src/html5Audio/js/h5-audio.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
