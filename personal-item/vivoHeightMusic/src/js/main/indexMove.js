@@ -56,16 +56,18 @@ define(function (require,exports,module){
         setTimeout(function (){
 			mTouch.MTween(wrap2,scaleObj,300,'linear',function (){
 				
-			    mTouch.MTween(wrap2,rotateObj,1200,'linear',function (){
+			    mTouch.MTween(wrap2,rotateObj,1500,'easeOut',function (){
 			    	$('#ts').removeClass('obj_fadeOut').addClass('obj_fadeIn_speed').css({display:'block','z-index':999});
-					
+			    	//所有div背面可见，不然找不到绑定事件的元素
+					$('div').css({'backface-visibility': 'visible','-webkit-backface-visibility': 'visible'});	
 					//360°旋转手机，进行相应操作，wrap2旋转，wrap1方向z位移-200；
 					rotation.rotateGrevity();
 					//手滑屏操作
 					rotation.touchMove();
 					//气球运动，操作提示文字运动
 					clickHandle.defaultMove();
-					console.log($('div[style*="text1.png"]'))
+					//四个动画组绑定对应操作
+					clickHandle.upDate();
 			    });
 			});
         },250);
