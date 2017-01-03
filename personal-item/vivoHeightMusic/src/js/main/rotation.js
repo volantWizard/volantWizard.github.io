@@ -31,17 +31,18 @@ define(function (require,exports,module){
 	var o = new Orienter();
 	function touchMove(){
 	    //决定wrap1方向z，位移距离，选择角速度，并且规定大于多少才能出现位移，不能和拖动起冲突
-	    window.addEventListener('touchstart',function (e){
+	    document.addEventListener('touchstart',function (e){
 	        isTouch = !0;
 	    },false)
-	    window.addEventListener('touchmove',function (e){
+	    document.addEventListener('touchmove',function (e){
 //	        console.dir(e);
 	        false || (0 == touchLast ? touchLast = getTouchPosition(e) : (touches = getTouchPosition(e),
 		    alpha -= alphaSpeed * (touches.x - touchLast.x),
 		    beta += betaSpeed * (touches.y - touchLast.y),
-		    touchLast = touches))
+		    touchLast = touches));
+		    touchOrient();
 	    },false)
-	    window.addEventListener('touchend',function (e){
+	    document.addEventListener('touchend',function (e){
 //	        console.dir(e);
 	        touches = touchLast = isTouch = !1;
 	    },false)
@@ -51,7 +52,7 @@ define(function (require,exports,module){
 	    		y:e.changedTouches[0].pageY
 	    	}
 	    }
-	    touchOrient()
+	    
 	}
 	
 	function touchOrient(){
@@ -64,7 +65,6 @@ define(function (require,exports,module){
 		z = z >= 200 ? 200 : z;
 		
 	    dirLastBetaValueBak = a.lat ; 
-	    $('p').text(rotationX+';'+z); 
 	    
 	    mTouch.css(wrap1,{
 	    	'translateX':0,

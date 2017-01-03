@@ -212,10 +212,11 @@ define(function (require,exports,module){
 		    	el:'video.png',
 		    	opacity1:'45.png',
 		    	opacity2:'46.png',
-		    	opacity3:'55.png',
-		    	opacity4:'56.png',
+		    	opacity3:'54.png',
+		    	opacity4:'55.png',
 		    	text1:'video_TS.png',
 		    	text2:'text4.png',
+		    	text3:'video_TAR.png',
 		    	scale1:{
 		    		'translateX':-544,
 			    	'translateY':-160,

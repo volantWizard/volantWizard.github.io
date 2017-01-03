@@ -46,7 +46,6 @@ define(function (require,exports,module){
 		    }
 	    	$('<meta name="viewport" content="width=640,user-scalable=no target-densitydpi=device-dpi" />').appendTo($('head'));
 	    }
-	    console.log(phoneHeight,phoneHeight*phoneScale,$(window).height());
 	}
 	setViewPort();
 //	exports.set = {};

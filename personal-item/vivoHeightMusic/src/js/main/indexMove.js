@@ -54,10 +54,14 @@ define(function (require,exports,module){
         $('.index_2').addClass('index_min');
         //700ms后，转轴主动画，scale从0-1，用时100ms延迟700ms执行,回掉内部动画开始旋转用时1.8s，执行完毕，出现遮罩提示！
         setTimeout(function (){
-			mTouch.MTween(wrap2,scaleObj,300,'linear',function (){
+			mTouch.MTween(wrap2,scaleObj,500,'linear',function (){
 				
-			    mTouch.MTween(wrap2,rotateObj,1500,'easeOut',function (){
+			    mTouch.MTween(wrap2,rotateObj,2200,'easeOut',function (){
 			    	$('#ts').removeClass('obj_fadeOut').addClass('obj_fadeIn_speed').css({display:'block','z-index':999});
+			    	//注意部分机型上，遮罩层$('#ts')，无法去除，可能原因：点击时，可能点的目标原始不是$('#ts')，故，利用委托给document
+			    	$(document).one('touchstart',function (){
+			    	    $('#ts').hide();
+			    	});
 			    	//所有div背面可见，不然找不到绑定事件的元素
 					$('div').css({'backface-visibility': 'visible','-webkit-backface-visibility': 'visible'});	
 					//360°旋转手机，进行相应操作，wrap2旋转，wrap1方向z位移-200；
@@ -72,8 +76,5 @@ define(function (require,exports,module){
 			});
         },250);
     },850);
-    //tap遮罩，消失
-    $('#ts').tap(function (){
-        $(this).hide();
-    });
+    
 });

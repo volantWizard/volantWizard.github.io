@@ -5,7 +5,7 @@ define(function (require,exports,module){
 		        audio.play();  
 		        document.removeEventListener("touchstart",play, false);  
 		    };  
-	    audio.play();  
+	    audio.play();
 	    if (audio.paused) {
 		    document.addEventListener("WeixinJSBridgeReady", function () {//微信  
 		       play();  
@@ -13,9 +13,7 @@ define(function (require,exports,module){
 		    document.addEventListener('YixinJSBridgeReady', function() {//易信  
 		        play();  
 		    }, false);  
-		    document.addEventListener("touchstart",function (){
-		        play();
-		    }, false);  
+		    document.addEventListener("touchstart",play, false);  
 	    } 
 	}  
 	audioAutoPlay('music1');  
