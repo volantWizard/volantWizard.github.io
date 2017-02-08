@@ -1,6 +1,6 @@
 //画地图必须要经纬度数据
 //申请百度开发者密钥
-var token =	'clR7lmWlaguV9WUYKM70GMbj';
+var token =	'RVmaXUa1eGW88dkTl7wrQ1OGTNXEL3Ac';
 //获取url
 var url = 'http://api.map.baidu.com/geocoder/v2/?output=json&ak='+token+'&address=';
 //发送请求的参数
@@ -19,13 +19,18 @@ searchBtn.click(function (){
 	    	var loc;
 	    	if (res.status===0) {
 	    		myChart.hideLoading();
-	    		console.log(res);
 	    		loc = res.result.location;
 	    		chartData.push({
 	    			name:place,
 	    			value:[loc.lng,loc.lat]
 	    		});
-	    		drawMap();
+	    		myChart.setOption({
+	    			series: [{
+			            // 根据名字对应到相应的系列
+			            name: '要去的地方',
+			            data:chartData
+			        }]
+	    		});
 	    	} else {
 	    		alert('百度没有找到对应的地址信息')
 	    	}
@@ -67,11 +72,13 @@ function drawMap(){
     	},
     	visualMap:{
     		min:0,
-    		max:200,
+    		max:500,
     		calculable:true,
     		inrange:{
-    			color: ['#50a3ba', '#eac736', '#d94e5d']
+    			color: ['#121122', 'rgba(3,4,5,0.4)', 'red']
     		},
+    		realtime:true,
+    		dimension:0,
     		textStyle: {
 	            color: '#fff'
 	        }
